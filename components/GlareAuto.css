@@ -1,0 +1,43 @@
+.glare-auto {
+  width: var(--gh-width);
+  height: var(--gh-height);
+  background: var(--gh-bg);
+  border-radius: var(--gh-br);
+  border: var(--gh-border);
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+@keyframes auto-glare-sweep {
+  0% {
+    background-position: -100% -100%, 0 0;
+  }
+  100% {
+    background-position: 100% 100%, 0 0;
+  }
+}
+
+.glare-auto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--gh-angle),
+    hsla(0, 0%, 0%, 0) 60%,
+    var(--gh-rgba) 70%,
+    hsla(0, 0%, 0%, 0),
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  background-size:
+    var(--gh-size) var(--gh-size),
+    100% 100%;
+  background-repeat: no-repeat;
+  background-position: -100% -100%, 0 0;
+}
+
+.glare-auto.glare-active::before {
+  animation: auto-glare-sweep var(--gh-duration) ease-in-out infinite;
+}
