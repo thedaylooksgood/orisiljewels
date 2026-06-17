@@ -53,7 +53,7 @@ const products: Product[] = [
 
 export default function ExpandingArrivals() {
   return (
-    <section className="w-full flex flex-col lg:flex-row h-[320px] rounded-none bg-white border-y-4 border-white shadow-sm select-none">
+    <section className="w-full flex flex-col lg:flex-row h-[320px] rounded-none bg-white border-y-4 border-white shadow-sm select-none ">
 
       {/* Left Side: Static Intro Section */}
       <div className="flex-none w-full lg:w-[300px] p-4 lg:p-8 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-[#E0B4B8]/30 bg-[#FFF6F7] rounded-none">

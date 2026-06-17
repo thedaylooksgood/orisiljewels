@@ -3,11 +3,11 @@
 import React, { useState, useMemo, startTransition } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { 
-  Filter, 
-  X, 
-  ChevronDown, 
-  Search, 
+import {
+  Filter,
+  X,
+  ChevronDown,
+  Search,
   SlidersHorizontal,
   Grid3X3,
   List,
@@ -1910,7 +1910,7 @@ export function ProductsContent() {
 
   const [addedToCartToast, setAddedToCartToast] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  
+
   // Availability filters state
   const [availability, setAvailability] = useState({
     inStock: false,
@@ -2049,7 +2049,7 @@ export function ProductsContent() {
   };
 
   return (
-    <div className="w-full bg-white min-h-screen text-slate-800 font-sans pb-24">
+    <div className="w-full bg-white min-h-screen text-slate-800 font-sans 4">
       {/* Toast Notification */}
       {addedToCartToast && (
         <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-[#2a1733] text-white text-xs md:text-sm font-semibold tracking-wider px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-3 animate-fade-in border border-white/10">
@@ -2060,16 +2060,16 @@ export function ProductsContent() {
 
       {/* Main Listing Area */}
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-8">
-        
+
         {/* Two-Column Grid Layout */}
         <div className="flex flex-col lg:flex-row gap-8 items-start">
-          
+
           {/* Left Sidebar: Filter Panel (Desktop only) */}
           <aside className="hidden lg:flex flex-col w-[22%] flex-none space-y-8 sticky top-20 border-r border-slate-100 pr-6">
-            
+
             {/* Categories list (screenshot style) */}
             <div className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 pb-2.5">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 .5">
                 Categories
               </h3>
               <div className="flex flex-col space-y-3.5 text-xs text-slate-600 font-light">
@@ -2082,11 +2082,10 @@ export function ProductsContent() {
                         const slug = getSlugFromCategory(cat);
                         router.push(`/collections/${slug}`);
                       }}
-                      className={`text-left transition-colors cursor-pointer hover:text-[#2a1733] ${
-                        isActive 
-                          ? 'text-[#2a1733] font-bold text-[13px]' 
+                      className={`text-left transition-colors cursor-pointer hover:text-[#2a1733] ${isActive
+                          ? 'text-[#2a1733] font-bold text-[13px]'
                           : 'text-slate-600 hover:font-medium'
-                      }`}
+                        }`}
                     >
                       {cat}
                     </button>
@@ -2097,7 +2096,7 @@ export function ProductsContent() {
 
             {/* Availability checks (screenshot style) */}
             <div className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 pb-2.5">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 .5">
                 Availability
               </h3>
               <div className="flex flex-col space-y-3.5 text-xs font-light text-slate-600">
@@ -2124,10 +2123,10 @@ export function ProductsContent() {
 
             {/* Price Dual-Range Slider (screenshot style) */}
             <div key={`${activeCategory}-${maxPriceLimit}`} className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-2 border-b border-slate-100 pb-2.5">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-2 border-b border-slate-100 .5">
                 Price
               </h3>
-              
+
               {/* Labels above handles */}
               <div className="flex justify-between items-center text-[10px] font-semibold text-slate-400 mt-2 px-1">
                 <span>₹0</span>
@@ -2136,7 +2135,7 @@ export function ProductsContent() {
 
               {/* Slider tracks */}
               <div className="relative w-full h-1 bg-slate-200 rounded-lg my-4">
-                <div 
+                <div
                   className="absolute h-full bg-slate-800 rounded"
                   style={{
                     left: `${(priceRange.min / maxPriceLimit) * 100}%`,
@@ -2176,7 +2175,7 @@ export function ProductsContent() {
 
             {/* Popular Products Widget (screenshot style) */}
             <div className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 pb-2.5">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 .5">
                 Popular Products
               </h3>
               <div className="flex flex-col space-y-4">
@@ -2236,7 +2235,7 @@ export function ProductsContent() {
 
           {/* Right Area: Catalog Title, Filters Row & Products Grid */}
           <div className="flex-1 w-full lg:w-[78%]">
-            
+
             {/* Header / Breadcrumb / Title Row (screenshot style) */}
             <div className="flex flex-col gap-1 mb-6">
               {/* Breadcrumb path */}
@@ -2256,14 +2255,14 @@ export function ProductsContent() {
                 <div className="flex items-center space-x-4">
                   {/* Grid/List icons */}
                   <div className="flex items-center space-x-2.5">
-                    <button 
+                    <button
                       onClick={() => setViewMode('grid')}
                       className={`p-1 transition-colors cursor-pointer ${viewMode === 'grid' ? 'text-[#2a1733]' : 'text-slate-400 hover:text-slate-700'}`}
                       title="Grid View"
                     >
                       <Grid3X3 size={17} strokeWidth={2.5} />
                     </button>
-                    <button 
+                    <button
                       onClick={() => setViewMode('list')}
                       className={`p-1 transition-colors cursor-pointer ${viewMode === 'list' ? 'text-[#2a1733]' : 'text-slate-400 hover:text-slate-700'}`}
                       title="List View"
@@ -2271,7 +2270,7 @@ export function ProductsContent() {
                       <List size={17} strokeWidth={2.5} />
                     </button>
                   </div>
-                  
+
                   {/* Results Text */}
                   <span className="text-slate-500 font-medium tracking-wide">
                     Showing: {filteredProducts.length > 0 ? `1-${filteredProducts.length}` : '0'} of {filteredProducts.length} Results
@@ -2316,14 +2315,14 @@ export function ProductsContent() {
             {(categoryParam || filterParam || availability.inStock || availability.outOfStock || priceRange.min > 0 || priceRange.max < maxPriceLimit || searchParam || idParam) && (
               <div className="flex flex-wrap gap-2 mb-6 items-center">
                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mr-1.5">Filters:</span>
-                
+
                 {searchParam && (
                   <span className="bg-slate-100 text-slate-700 text-[10px] font-bold px-3 py-1 rounded flex items-center gap-1.5">
                     Search: &ldquo;{searchParam}&rdquo;
                     <X size={12} className="cursor-pointer hover:text-red-500" onClick={() => updateUrlParams({ search: null })} />
                   </span>
                 )}
-                
+
                 {categoryParam && (
                   <span className="bg-slate-100 text-[#2a1733] text-[10px] font-bold px-3 py-1 rounded flex items-center gap-1.5 uppercase tracking-wide">
                     {categoryParam}
@@ -2384,17 +2383,17 @@ export function ProductsContent() {
                 </button>
               </div>
             ) : viewMode === 'grid' ? (
-              
+
               /* Grid View (4 columns, screenshot layout) */
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="flex flex-col bg-white group rounded-md overflow-hidden pb-2 relative"
+                    className="flex flex-col bg-white group rounded-md overflow-hidden  relative"
                   >
                     {/* Image Container (square aspect-ratio) */}
                     <div className="relative w-full aspect-square overflow-hidden bg-slate-50 rounded-lg">
-                      
+
                       {/* Sold out badge */}
                       {product.badge === 'Sold out' && (
                         <span className="bg-black text-white text-[10px] font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full absolute top-3.5 left-3.5 z-10">
@@ -2418,14 +2417,14 @@ export function ProductsContent() {
                       <h3 className="text-xs md:text-[13px] font-medium text-slate-800 hover:text-[#2a1733] transition-colors leading-relaxed truncate w-full px-1">
                         {product.name}
                       </h3>
-                      
+
                       {/* Product price */}
                       <span className="mt-1.5 text-xs md:text-sm font-semibold text-slate-900">
                         {product.displayPrice}
                       </span>
 
                       {/* Add to Cart button */}
-                      <button 
+                      <button
                         onClick={() => handleAddToCart(product.name)}
                         className="mt-4 w-full bg-[#2a1733] hover:bg-[#3d224b] text-white text-[11px] font-black uppercase tracking-widest py-3 rounded transition-colors cursor-pointer focus:outline-none"
                       >
@@ -2436,7 +2435,7 @@ export function ProductsContent() {
                 ))}
               </div>
             ) : (
-              
+
               /* List View (1 column) */
               <div className="flex flex-col space-y-6">
                 {filteredProducts.map((product) => (
@@ -2476,7 +2475,7 @@ export function ProductsContent() {
 
                     {/* Action */}
                     <div className="flex-none w-full sm:w-auto">
-                      <button 
+                      <button
                         onClick={() => handleAddToCart(product.name)}
                         className="w-full sm:w-44 bg-[#2a1733] hover:bg-[#3d224b] text-white text-[11px] font-black uppercase tracking-widest py-3 px-6 rounded transition-colors cursor-pointer"
                       >
@@ -2494,7 +2493,7 @@ export function ProductsContent() {
       {/* Mobile Filters Side Drawer */}
       {mobileFilterOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
-          <div 
+          <div
             className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300"
             onClick={() => setMobileFilterOpen(false)}
           />
@@ -2504,7 +2503,7 @@ export function ProductsContent() {
               <h2 className="text-sm font-bold uppercase tracking-widest text-[#2a1733] flex items-center gap-2">
                 <Filter size={16} /> Filters
               </h2>
-              <button 
+              <button
                 onClick={() => setMobileFilterOpen(false)}
                 className="text-slate-400 hover:text-slate-800 p-1 cursor-pointer"
               >
@@ -2568,7 +2567,7 @@ export function ProductsContent() {
                 <span>₹{maxPriceLimit}</span>
               </div>
               <div className="relative w-full h-1 bg-slate-200 rounded-lg my-4">
-                <div 
+                <div
                   className="absolute h-full bg-slate-800 rounded"
                   style={{
                     left: `${(priceRange.min / maxPriceLimit) * 100}%`,

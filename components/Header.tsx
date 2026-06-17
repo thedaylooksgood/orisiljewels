@@ -181,7 +181,7 @@ export function Header() {
                     {/* Mega Menu Links Grid (Middle Columns) */}
                     <div className="col-span-6 grid grid-cols-2 gap-x-8 gap-y-6">
                       <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20 pb-2 mb-3">Rings</h4>
+                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Rings</h4>
                         <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
                           <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Engagement Rings</Link></li>
                           <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Wedding Rings</Link></li>
@@ -193,7 +193,7 @@ export function Header() {
                       </div>
 
                       <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20 pb-2 mb-3">Necklaces</h4>
+                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Necklaces</h4>
                         <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
                           <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Pendant Necklaces</Link></li>
                           <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Chain Necklaces</Link></li>
@@ -205,7 +205,7 @@ export function Header() {
                       </div>
 
                       <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20 pb-2 mb-3">Earrings</h4>
+                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Earrings</h4>
                         <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
                           <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Stud Earrings</Link></li>
                           <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Hoop Earrings</Link></li>
@@ -217,7 +217,7 @@ export function Header() {
                       </div>
 
                       <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20 pb-2 mb-3">Bracelets</h4>
+                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Bracelets</h4>
                         <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
                           <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Chain Bracelets</Link></li>
                           <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Diamond Bracelets</Link></li>
@@ -446,7 +446,7 @@ export function Header() {
             </Link>
 
             {/* Shop Accordion */}
-            <div className="space-y-2 border-b border-accent-rose/10 pb-2">
+            <div className="space-y-2 border-b border-accent-rose/10 ">
               <button
                 onClick={() => setMobileShopOpen(!mobileShopOpen)}
                 className="w-full flex justify-between items-center text-sm font-medium text-[#6D4C4E] hover:text-[#C17F78] transition-colors py-2"
@@ -455,7 +455,7 @@ export function Header() {
                 {mobileShopOpen ? <Minus size={14} strokeWidth={2} /> : <Plus size={14} strokeWidth={2} />}
               </button>
 
-              <div className={`pl-4 space-y-3 overflow-hidden transition-all duration-300 ${mobileShopOpen ? 'max-h-[350px] opacity-100 mt-2 pb-2' : 'max-h-0 opacity-0 pointer-events-none'
+              <div className={`pl-4 space-y-3 overflow-hidden transition-all duration-300 ${mobileShopOpen ? 'max-h-[350px] opacity-100 mt-2 ' : 'max-h-0 opacity-0 pointer-events-none'
                 }`}>
                 {categories.map((cat) => (
                   <Link
@@ -471,7 +471,7 @@ export function Header() {
             </div>
 
             {/* Collections Accordion */}
-            <div className="space-y-2 border-b border-accent-rose/10 pb-2">
+            <div className="space-y-2 border-b border-accent-rose/10 ">
               <button
                 onClick={() => setMobileCollectionsOpen(!mobileCollectionsOpen)}
                 className="w-full flex justify-between items-center text-sm font-medium text-[#6D4C4E] hover:text-[#C17F78] transition-colors py-2"
@@ -480,7 +480,7 @@ export function Header() {
                 {mobileCollectionsOpen ? <Minus size={14} strokeWidth={2} /> : <Plus size={14} strokeWidth={2} />}
               </button>
 
-              <div className={`pl-4 space-y-3 overflow-hidden transition-all duration-300 ${mobileCollectionsOpen ? 'max-h-[200px] opacity-100 mt-2 pb-2' : 'max-h-0 opacity-0 pointer-events-none'
+              <div className={`pl-4 space-y-3 overflow-hidden transition-all duration-300 ${mobileCollectionsOpen ? 'max-h-[200px] opacity-100 mt-2 ' : 'max-h-0 opacity-0 pointer-events-none'
                 }`}>
                 <Link href="/products?filter=new-arrivals" onClick={() => setShowMobileMenu(false)} className="block text-[11px] font-medium text-[#6D4C4E]/70 hover:text-[#C17F78] transition-colors">
                   New Arrivals

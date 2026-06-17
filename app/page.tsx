@@ -14,7 +14,7 @@ export default function Home() {
       <OurCollections />
 
       {/* Poster Banner Section */}
-      <div className="w-full bg-white pb-16">
+      <div className="w-full bg-white ">
         <div className="w-full relative h-[400px] overflow-hidden">
           <Image
             src="/poster.png"
