@@ -1,6 +1,6 @@
 import { Banner } from "@/components/Banner";
 import { OurCollections } from "@/components/OurCollections";
-import { NewArrivals } from "@/components/NewArrivals";
+import NewArrivalsParallax from "@/components/NewArrivals";
 import { ShopByBudget } from "@/components/ShopByBudget";
 import { ShineSection } from "@/components/ShineSection";
 import { Bestsellers } from "@/components/Bestsellers";
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </div>
 
-      <NewArrivals />
+      <NewArrivalsParallax />
       <ShopByBudget />
       <ShineSection />
       <Bestsellers />
