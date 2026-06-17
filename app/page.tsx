@@ -14,15 +14,14 @@ export default function Home() {
       <OurCollections />
 
       {/* Poster Banner Section */}
-      <div className="w-full bg-white pb-16 flex justify-center">
-        <div className="w-full max-w-[1920px] overflow-hidden">
+      <div className="w-full bg-white pb-16">
+        <div className="w-full relative h-[400px] overflow-hidden">
           <Image
-            src="/poster.webp"
+            src="/poster.png"
             alt="Orisil Jewels Exclusive Collection Poster"
-            width={1920}
-            height={640}
+            fill
             priority
-            className="w-full h-auto block hover:scale-[1.01] transition-transform duration-700 ease-out"
+            className="object-fill hover:scale-[1.01] transition-transform duration-700 ease-out"
           />
         </div>
       </div>

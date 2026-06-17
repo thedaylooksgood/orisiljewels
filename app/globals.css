@@ -1,26 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFF6F7;
+  --foreground: #6D4C4E;
+  --color-bg-main: #FFF6F7;
+  --color-bg-soft: #FFE9EC;
+  --color-accent-rose: #E0B4B8;
+  --color-cta-primary: #C17F78;
+  --color-text-dark: #6D4C4E;
+  --color-surface-soft: #F3E3E4;
+  --color-border-light: rgba(224, 180, 184, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-bg-main: var(--color-bg-main);
+  --color-bg-soft: var(--color-bg-soft);
+  --color-accent-rose: var(--color-accent-rose);
+  --color-cta-primary: var(--color-cta-primary);
+  --color-text-dark: var(--color-text-dark);
+  --color-surface-soft: var(--color-surface-soft);
+  --color-border-light: var(--color-border-light);
+  
+  --font-bodoni: var(--font-bodoni-moda);
+  --font-script: var(--font-qwitcher-grypen);
+  --font-sans: var(--font-body);
+  --font-raleway: var(--font-raleway);
+  --font-playfair: var(--font-playfair);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
