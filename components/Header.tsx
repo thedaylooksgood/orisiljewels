@@ -79,12 +79,10 @@ export function Header() {
             width: isScrolled ? "min(100%, 1100px)" : "100%",
             marginTop: isScrolled ? "0.75rem" : "0rem",
             borderRadius: isScrolled ? "16px" : "0px",
-            paddingLeft: isScrolled ? "1.5rem" : "3rem",
-            paddingRight: isScrolled ? "1.5rem" : "3rem",
             height: isScrolled ? "54px" : "72px",
           }}
           transition={dockTransition}
-          className={`pointer-events-auto relative flex items-center justify-between overflow-hidden transition-shadow duration-700 w-full ${isScrolled ? "shadow-[0_12px_40px_rgba(109,76,78,0.06)]" : ""
+          className={`pointer-events-auto relative flex justify-center overflow-hidden transition-shadow duration-700 w-full ${isScrolled ? "shadow-[0_12px_40px_rgba(109,76,78,0.06)]" : ""
             }`}
         >
           {/* Animated Backgrounds */}
@@ -109,234 +107,240 @@ export function Header() {
               }`}
           />
 
-          {/* Logo Group - Animated size */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group z-10">
-            <motion.div
-              animate={{
-                height: isScrolled ? "90px" : "110px",
-                width: isScrolled ? "250px" : "320px",
-              }}
-              transition={dockTransition}
-              className="relative cursor-pointer"
-            >
-              {/* Using CSS Masking to dynamically tint the PNG logo without blend-mode solid block issues */}
-              <div
-                className="w-full h-full bg-[#6D4C4E] group-hover:bg-[#C17F78] transition-colors duration-300"
-                style={{
-                  WebkitMaskImage: "url('/logo.png')",
-                  WebkitMaskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "left center",
-                  maskImage: "url('/logo.png')",
-                  maskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  maskPosition: "left center"
+
+
+          {/* INNER CONTENT CONTAINER - aligns with other sections when not scrolled */}
+          <div className={`w-full relative z-10 flex items-center justify-between h-full mx-auto ${isScrolled ? 'px-6' : 'max-w-[1320px] px-4 md:px-8'}`}>
+
+            {/* Logo Group - Animated size */}
+            <Link href="/" className="flex items-center gap-3 shrink-0 group z-10">
+              <motion.div
+                animate={{
+                  height: isScrolled ? "90px" : "110px",
+                  width: isScrolled ? "250px" : "320px",
                 }}
-              />
-            </motion.div>
-          </Link>
-
-          {/* Desktop Navigation - Plus Jakarta Sans (font-sans) in TitleCase */}
-          <nav className="hidden lg:flex items-center z-10">
-            <motion.div
-              animate={{ gap: isScrolled ? "1.5rem" : "2.25rem" }}
-              transition={dockTransition}
-              className="flex items-center font-sans text-sm font-medium text-[#6D4C4E]"
-            >
-              <Link
-                href="/"
-                className="hover:text-[#C17F78] transition-colors duration-300 relative py-1 group"
+                transition={dockTransition}
+                className="relative cursor-pointer"
               >
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-[#C17F78] transition-all duration-300 group-hover:w-full" />
-              </Link>
+                {/* Using CSS Masking to dynamically tint the PNG logo without blend-mode solid block issues */}
+                <div
+                  className="w-full h-full bg-[#6D4C4E] group-hover:bg-[#C17F78] transition-colors duration-300"
+                  style={{
+                    WebkitMaskImage: "url('/logo.png')",
+                    WebkitMaskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "left center",
+                    maskImage: "url('/logo.png')",
+                    maskSize: "contain",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "left center"
+                  }}
+                />
+              </motion.div>
+            </Link>
 
-              {/* SHOP Item with premium Mega Menu */}
-              <div className="relative group/menu py-4">
-                <Link href="/products" className="flex items-center hover:text-[#C17F78] transition-colors duration-300 gap-1 py-1">
-                  Shop <ChevronDown size={12} className="opacity-70 group-hover/menu:rotate-180 transition-transform duration-300" strokeWidth={2.5} />
+            {/* Desktop Navigation - Plus Jakarta Sans (font-sans) in TitleCase */}
+            <nav className="hidden lg:flex items-center z-10">
+              <motion.div
+                animate={{ gap: isScrolled ? "1.5rem" : "2.25rem" }}
+                transition={dockTransition}
+                className="flex items-center font-sans text-sm font-medium text-[#6D4C4E]"
+              >
+                <Link
+                  href="/"
+                  className="hover:text-[#C17F78] transition-colors duration-300 relative py-1 group"
+                >
+                  Home
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-[#C17F78] transition-all duration-300 group-hover:w-full" />
                 </Link>
 
-                {/* Mega Menu Dropdown */}
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-screen max-w-[1100px] opacity-0 invisible scale-95 translate-y-4 group-hover/menu:opacity-100 group-hover/menu:visible group-hover/menu:scale-100 group-hover/menu:translate-y-0 transition-all duration-300 ease-out z-50">
-                  <div className="bg-white/95 backdrop-blur-xl border border-accent-rose/25 rounded-2xl shadow-[0_20px_50px_rgba(109,76,78,0.12)] overflow-hidden grid grid-cols-12 p-8 gap-8 font-sans">
-                    {/* Left Column: Image Promo with elegant color hover transition */}
-                    <div className="col-span-3 relative rounded-xl overflow-hidden aspect-[3/4] shadow-sm border border-accent-rose/15 group/promo cursor-pointer">
-                      <Image
-                        src="/megamenu_jewelry.png"
-                        alt="Timeless Beauty"
-                        fill
-                        className="object-cover transition-all duration-700 ease-out scale-100 group-hover/promo:scale-105 filter saturate-[0.8] sepia-[0.1] group-hover/promo:saturate-110 group-hover/promo:sepia-0"
-                      />
-                      {/* Rose Gold Color Overlay Tint - Fades on Hover */}
-                      <div className="absolute inset-0 bg-[#C17F78]/15 mix-blend-color opacity-100 group-hover/promo:opacity-0 transition-opacity duration-700"></div>
-                      {/* Dark Editorial Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-95"></div>
-                      <div className="absolute bottom-5 left-5 right-5 text-white z-10 transition-transform duration-500 group-hover/promo:translate-y-[-2px]">
-                        <p className="font-bodoni text-lg font-medium tracking-wide">Timeless Beauty</p>
-                        <p className="text-[9px] font-semibold tracking-widest uppercase opacity-90 mt-1">CRAFTED FOR YOU</p>
+                {/* SHOP Item with premium Mega Menu */}
+                <div className="relative group/menu py-4">
+                  <Link href="/products" className="flex items-center hover:text-[#C17F78] transition-colors duration-300 gap-1 py-1">
+                    Shop <ChevronDown size={12} className="opacity-70 group-hover/menu:rotate-180 transition-transform duration-300" strokeWidth={2.5} />
+                  </Link>
+
+                  {/* Mega Menu Dropdown */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-screen max-w-[1100px] opacity-0 invisible scale-95 translate-y-4 group-hover/menu:opacity-100 group-hover/menu:visible group-hover/menu:scale-100 group-hover/menu:translate-y-0 transition-all duration-300 ease-out z-50">
+                    <div className="bg-white/95 backdrop-blur-xl border border-accent-rose/25 rounded-2xl shadow-[0_20px_50px_rgba(109,76,78,0.12)] overflow-hidden grid grid-cols-12 p-8 gap-8 font-sans">
+                      {/* Left Column: Image Promo with elegant color hover transition */}
+                      <div className="col-span-3 relative rounded-xl overflow-hidden aspect-[3/4] shadow-sm border border-accent-rose/15 group/promo cursor-pointer">
+                        <Image
+                          src="/megamenu_jewelry.png"
+                          alt="Timeless Beauty"
+                          fill
+                          className="object-cover transition-all duration-700 ease-out scale-100 group-hover/promo:scale-105 filter saturate-[0.8] sepia-[0.1] group-hover/promo:saturate-110 group-hover/promo:sepia-0"
+                        />
+                        {/* Rose Gold Color Overlay Tint - Fades on Hover */}
+                        <div className="absolute inset-0 bg-[#C17F78]/15 mix-blend-color opacity-100 group-hover/promo:opacity-0 transition-opacity duration-700"></div>
+                        {/* Dark Editorial Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-95"></div>
+                        <div className="absolute bottom-5 left-5 right-5 text-white z-10 transition-transform duration-500 group-hover/promo:translate-y-[-2px]">
+                          <p className="font-bodoni text-lg font-medium tracking-wide">Timeless Beauty</p>
+                          <p className="text-[9px] font-semibold tracking-widest uppercase opacity-90 mt-1">CRAFTED FOR YOU</p>
+                        </div>
+                      </div>
+
+                      {/* Mega Menu Links Grid (Middle Columns) */}
+                      <div className="col-span-6 grid grid-cols-2 gap-x-8 gap-y-6">
+                        <div>
+                          <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Rings</h4>
+                          <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
+                            <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Engagement Rings</Link></li>
+                            <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Wedding Rings</Link></li>
+                            <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Diamond Rings</Link></li>
+                            <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Gemstone Rings</Link></li>
+                            <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Stacking Rings</Link></li>
+                            <li className="pt-1"><Link href="/products?category=Rings" className="text-[#C17F78] font-bold hover:underline">View All Rings →</Link></li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Necklaces</h4>
+                          <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
+                            <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Pendant Necklaces</Link></li>
+                            <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Chain Necklaces</Link></li>
+                            <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Diamond Necklaces</Link></li>
+                            <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Gemstone Necklaces</Link></li>
+                            <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Initial Necklaces</Link></li>
+                            <li className="pt-1"><Link href="/products?category=Necklaces%2FPendants" className="text-[#C17F78] font-bold hover:underline">View All Necklaces →</Link></li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Earrings</h4>
+                          <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
+                            <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Stud Earrings</Link></li>
+                            <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Hoop Earrings</Link></li>
+                            <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Drop Earrings</Link></li>
+                            <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Diamond Earrings</Link></li>
+                            <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Pearl Earrings</Link></li>
+                            <li className="pt-1"><Link href="/products?category=Earrings" className="text-[#C17F78] font-bold hover:underline">View All Earrings →</Link></li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Bracelets</h4>
+                          <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
+                            <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Chain Bracelets</Link></li>
+                            <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Diamond Bracelets</Link></li>
+                            <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Bangle Bracelets</Link></li>
+                            <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Tennis Bracelets</Link></li>
+                            <li><Link href="/products?category=Ladies%20Anklets" className="hover:text-[#C17F78] transition-colors">Ladies Anklets</Link></li>
+                            <li className="pt-1"><Link href="/products?category=Bracelets" className="text-[#C17F78] font-bold hover:underline">View All Bracelets →</Link></li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Editorial Promo Info Card */}
+                      <div className="col-span-3 bg-bg-soft/50 border border-accent-rose/20 rounded-xl p-6 flex flex-col justify-between items-center text-center">
+                        <span className="font-script text-[44px] text-[#C17F78] leading-none mb-1">
+                          crafted for you
+                        </span>
+                        <p className="text-[10px] text-black/85 leading-relaxed font-light mt-2 mb-5">
+                          Discover our most loved sterling silver pieces, designed to be cherished for a lifetime.
+                        </p>
+                        <Link
+                          href="/products"
+                          className="w-full bg-[#C17F78] hover:bg-[#b06e67] text-white text-[9px] font-bold tracking-[0.25em] py-3 rounded-lg shadow-sm transition-all duration-300 hover:translate-y-[-2px] uppercase"
+                        >
+                          DISCOVER NOW
+                        </Link>
                       </div>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Mega Menu Links Grid (Middle Columns) */}
-                    <div className="col-span-6 grid grid-cols-2 gap-x-8 gap-y-6">
-                      <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Rings</h4>
-                        <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
-                          <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Engagement Rings</Link></li>
-                          <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Wedding Rings</Link></li>
-                          <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Diamond Rings</Link></li>
-                          <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Gemstone Rings</Link></li>
-                          <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Stacking Rings</Link></li>
-                          <li className="pt-1"><Link href="/products?category=Rings" className="text-[#C17F78] font-bold hover:underline">View All Rings →</Link></li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Necklaces</h4>
-                        <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
-                          <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Pendant Necklaces</Link></li>
-                          <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Chain Necklaces</Link></li>
-                          <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Diamond Necklaces</Link></li>
-                          <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Gemstone Necklaces</Link></li>
-                          <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Initial Necklaces</Link></li>
-                          <li className="pt-1"><Link href="/products?category=Necklaces%2FPendants" className="text-[#C17F78] font-bold hover:underline">View All Necklaces →</Link></li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Earrings</h4>
-                        <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
-                          <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Stud Earrings</Link></li>
-                          <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Hoop Earrings</Link></li>
-                          <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Drop Earrings</Link></li>
-                          <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Diamond Earrings</Link></li>
-                          <li><Link href="/products?category=Earrings" className="hover:text-[#C17F78] transition-colors">Pearl Earrings</Link></li>
-                          <li className="pt-1"><Link href="/products?category=Earrings" className="text-[#C17F78] font-bold hover:underline">View All Earrings →</Link></li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="text-[11px] font-bold tracking-widest text-[#6D4C4E] border-b border-accent-rose/20  mb-3">Bracelets</h4>
-                        <ul className="space-y-2 text-[11px] font-medium text-[#6D4C4E]/80">
-                          <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Chain Bracelets</Link></li>
-                          <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Diamond Bracelets</Link></li>
-                          <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Bangle Bracelets</Link></li>
-                          <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Tennis Bracelets</Link></li>
-                          <li><Link href="/products?category=Ladies%20Anklets" className="hover:text-[#C17F78] transition-colors">Ladies Anklets</Link></li>
-                          <li className="pt-1"><Link href="/products?category=Bracelets" className="text-[#C17F78] font-bold hover:underline">View All Bracelets →</Link></li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* Right Column: Editorial Promo Info Card */}
-                    <div className="col-span-3 bg-bg-soft/50 border border-accent-rose/20 rounded-xl p-6 flex flex-col justify-between items-center text-center">
-                      <span className="font-script text-[44px] text-[#C17F78] leading-none mb-1">
-                        crafted for you
-                      </span>
-                      <p className="text-[10px] text-black/85 leading-relaxed font-light mt-2 mb-5">
-                        Discover our most loved sterling silver pieces, designed to be cherished for a lifetime.
-                      </p>
-                      <Link
-                        href="/products"
-                        className="w-full bg-[#C17F78] hover:bg-[#b06e67] text-white text-[9px] font-bold tracking-[0.25em] py-3 rounded-lg shadow-sm transition-all duration-300 hover:translate-y-[-2px] uppercase"
-                      >
-                        DISCOVER NOW
+                {/* COLLECTIONS Item with similar structure */}
+                <div className="relative group/menu py-4">
+                  <Link href="/products" className="flex items-center hover:text-[#C17F78] transition-colors duration-300 gap-1 py-1">
+                    Collections <ChevronDown size={12} className="opacity-70 group-hover/menu:rotate-180 transition-transform duration-300" strokeWidth={2.5} />
+                  </Link>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-64 opacity-0 invisible scale-95 translate-y-3 group-hover/menu:opacity-100 group-hover/menu:visible group-hover/menu:scale-100 group-hover/menu:translate-y-0 transition-all duration-300 ease-out z-50">
+                    <div className="bg-white border border-accent-rose/25 shadow-2xl rounded-xl overflow-hidden py-2 font-sans">
+                      <Link href="/products?filter=new-arrivals" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
+                        New Arrivals
+                      </Link>
+                      <Link href="/products?filter=bestseller" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
+                        Best Sellers
+                      </Link>
+                      <Link href="/products" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
+                        Bridal Collection
+                      </Link>
+                      <Link href="/products" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
+                        Signature Collection
+                      </Link>
+                      <Link href="/products" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium">
+                        Luxury Gifts
                       </Link>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* COLLECTIONS Item with similar structure */}
-              <div className="relative group/menu py-4">
-                <Link href="/products" className="flex items-center hover:text-[#C17F78] transition-colors duration-300 gap-1 py-1">
-                  Collections <ChevronDown size={12} className="opacity-70 group-hover/menu:rotate-180 transition-transform duration-300" strokeWidth={2.5} />
+                <Link
+                  href="/about"
+                  className="hover:text-[#C17F78] transition-colors duration-300 relative py-1 group"
+                >
+                  About
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-[#C17F78] transition-all duration-300 group-hover:w-full" />
                 </Link>
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-64 opacity-0 invisible scale-95 translate-y-3 group-hover/menu:opacity-100 group-hover/menu:visible group-hover/menu:scale-100 group-hover/menu:translate-y-0 transition-all duration-300 ease-out z-50">
-                  <div className="bg-white border border-accent-rose/25 shadow-2xl rounded-xl overflow-hidden py-2 font-sans">
-                    <Link href="/products?filter=new-arrivals" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
-                      New Arrivals
-                    </Link>
-                    <Link href="/products?filter=bestseller" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
-                      Best Sellers
-                    </Link>
-                    <Link href="/products" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
-                      Bridal Collection
-                    </Link>
-                    <Link href="/products" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium border-b border-accent-rose/10">
-                      Signature Collection
-                    </Link>
-                    <Link href="/products" className="block px-6 py-3 text-[11px] text-black hover:text-[#C17F78] hover:bg-bg-soft/40 transition-colors font-medium">
-                      Luxury Gifts
-                    </Link>
-                  </div>
-                </div>
+                <Link
+                  href="/contact"
+                  className="hover:text-[#C17F78] transition-colors duration-300 relative py-1 group"
+                >
+                  Contact
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-[#C17F78] transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </motion.div>
+            </nav>
+
+            {/* Right Utilities Icons */}
+            <div className="flex items-center space-x-2 md:space-x-4 text-[#6D4C4E] z-10">
+              {/* Search Trigger */}
+              <button
+                onClick={() => setShowSearchOverlay(true)}
+                className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95"
+                aria-label="Search products"
+              >
+                <Search size={19} strokeWidth={1.5} />
+              </button>
+
+              {/* User Account */}
+              <Link
+                href="/account"
+                className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 hidden sm:inline-block"
+                aria-label="My account"
+              >
+                <User size={19} strokeWidth={1.5} />
+              </Link>
+
+              {/* Wishlist */}
+              <Link
+                href="/products?filter=wishlist"
+                className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 relative"
+                aria-label="My wishlist"
+              >
+                <Heart size={19} strokeWidth={1.5} />
+              </Link>
+
+              {/* Shopping Cart Bag */}
+              <div className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 relative">
+                <ShoppingBag size={19} strokeWidth={1.5} />
+                <span className="absolute top-1 right-1 bg-[#C17F78] text-white text-[8px] font-bold w-[14px] h-[14px] flex items-center justify-center rounded-full border border-white">
+                  1
+                </span>
               </div>
 
-              <Link
-                href="/about"
-                className="hover:text-[#C17F78] transition-colors duration-300 relative py-1 group"
+              {/* Mobile Hamburger menu */}
+              <button
+                onClick={() => setShowMobileMenu(true)}
+                className="p-2 hover:text-[#C17F78] lg:hidden transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95"
+                aria-label="Open mobile menu"
               >
-                About
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-[#C17F78] transition-all duration-300 group-hover:w-full" />
-              </Link>
-              <Link
-                href="/contact"
-                className="hover:text-[#C17F78] transition-colors duration-300 relative py-1 group"
-              >
-                Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-full bg-[#C17F78] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </motion.div>
-          </nav>
-
-          {/* Right Utilities Icons */}
-          <div className="flex items-center space-x-2 md:space-x-4 text-[#6D4C4E] z-10">
-            {/* Search Trigger */}
-            <button
-              onClick={() => setShowSearchOverlay(true)}
-              className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95"
-              aria-label="Search products"
-            >
-              <Search size={19} strokeWidth={1.5} />
-            </button>
-
-            {/* User Account */}
-            <Link
-              href="/account"
-              className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 hidden sm:inline-block"
-              aria-label="My account"
-            >
-              <User size={19} strokeWidth={1.5} />
-            </Link>
-
-            {/* Wishlist */}
-            <Link
-              href="/products?filter=wishlist"
-              className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 relative"
-              aria-label="My wishlist"
-            >
-              <Heart size={19} strokeWidth={1.5} />
-            </Link>
-
-            {/* Shopping Cart Bag */}
-            <div className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 relative">
-              <ShoppingBag size={19} strokeWidth={1.5} />
-              <span className="absolute top-1 right-1 bg-[#C17F78] text-white text-[8px] font-bold w-[14px] h-[14px] flex items-center justify-center rounded-full border border-white">
-                1
-              </span>
+                <Menu size={20} strokeWidth={1.75} />
+              </button>
             </div>
-
-            {/* Mobile Hamburger menu */}
-            <button
-              onClick={() => setShowMobileMenu(true)}
-              className="p-2 hover:text-[#C17F78] lg:hidden transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95"
-              aria-label="Open mobile menu"
-            >
-              <Menu size={20} strokeWidth={1.75} />
-            </button>
-          </div>
+          </div>{/* END INNER CONTAINER */}
         </motion.div>
       </header>
 

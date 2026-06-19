@@ -41,8 +41,8 @@ const instagramPosts: InstagramPost[] = [
 
 export function InstagramShop() {
   return (
-    <section className="w-full bg-white py-16 px-4 md:px-8 select-none">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-white py-16 select-none">
+      <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8">
         {/* Section Heading */}
         <div className="text-center mb-12">
           <h2 className="text-[#2a1733] text-2xl md:text-3xl font-bold tracking-[0.2em] uppercase mb-3">

@@ -77,7 +77,7 @@ const cardVariants = {
 
 export function ShopByBudget() {
   return (
-    <section className="w-full bg-[#FFF6F7] pt-12 pb-16 px-4 md:px-8 select-none relative overflow-hidden">
+    <section className="w-full bg-[#FFF6F7] pt-12 pb-16 select-none relative overflow-hidden">
 
       {/* Luxurious Silk Background Texture Overlay */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-none">
@@ -96,7 +96,7 @@ export function ShopByBudget() {
       <div className="absolute top-24 right-[15%] text-[#E0B4B8]/30 text-sm hidden md:block select-none pointer-events-none z-10 animate-pulse">✦</div>
       <div className="absolute bottom-24 left-[15%] text-[#C17F78]/20 text-lg hidden md:block select-none pointer-events-none z-10 animate-pulse">✦</div>
 
-      <div className="max-w-[1400px] mx-auto relative z-10">
+      <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8 relative z-10">
         {/* Section Heading & Taglines */}
         <div className="text-center flex flex-col items-center mb-10">
           {/* Top Tagline */}

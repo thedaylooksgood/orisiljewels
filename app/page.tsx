@@ -1,7 +1,6 @@
 import { Banner } from "@/components/Banner";
 import { OurCollections } from "@/components/OurCollections";
 import NewArrivalsParallax from "@/components/NewArrivals";
-import { ShopByBudget } from "@/components/ShopByBudget";
 import { ShineSection } from "@/components/ShineSection";
 import { Bestsellers } from "@/components/Bestsellers";
 import { InstagramShop } from "@/components/InstagramShop";
@@ -14,20 +13,21 @@ export default function Home() {
       <OurCollections />
 
       {/* Poster Banner Section */}
-      <div className="w-full bg-white ">
-        <div className="w-full relative h-[400px] overflow-hidden">
-          <Image
-            src="/poster.png"
-            alt="Orisil Jewels Exclusive Collection Poster"
-            fill
-            priority
-            className="object-fill hover:scale-[1.01] transition-transform duration-700 ease-out"
-          />
+      <div className="w-full bg-white pb-2">
+        <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8">
+          <div className="w-full relative h-[400px] overflow-hidden">
+            <Image
+              src="/poster.png"
+              alt="Orisil Jewels Exclusive Collection Poster"
+              fill
+              priority
+              className="object-fill hover:scale-[1.01] transition-transform duration-700 ease-out"
+            />
+          </div>
         </div>
       </div>
 
       <NewArrivalsParallax />
-      <ShopByBudget />
       <ShineSection />
       <Bestsellers />
       <InstagramShop />

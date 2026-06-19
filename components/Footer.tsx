@@ -38,8 +38,8 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#2a1733] text-white py-16 px-6 md:px-12 select-none border-t border-white/5">
-      <div className="max-w-7xl mx-auto flex flex-col space-y-12">
+    <footer className="w-full bg-[#2a1733] text-white py-16 select-none border-t border-white/5">
+      <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8 flex flex-col space-y-12">
         {/* Main Footer Links & Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Column 1: Logo & Info */}
