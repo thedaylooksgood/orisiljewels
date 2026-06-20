@@ -37,7 +37,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#FFF6F7] text-[#6D4C4E] py-16 select-none relative overflow-hidden border-t border-[#C17F78]/15">
+    <footer className="w-full bg-[#FFF6F7] text-[#6D4C4E] py-10 md:py-12 select-none relative overflow-hidden border-t border-[#C17F78]/15">
       {/* Luxurious Silk Background Texture Overlay */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-[0.15] pointer-events-none">
         <Image
@@ -51,29 +51,29 @@ export function Footer() {
 
       <div className="w-full max-w-[1320px] mx-auto px-4 md:px-8 relative z-10 flex flex-col">
         {/* Section 1: Newsletter */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between pb-8 gap-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between pb-6 gap-6">
           <div className="flex flex-col space-y-1">
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#C17F78]">JOIN OUR STORY</span>
             <h2 className="text-xl md:text-2xl lg:text-[28px] font-bodoni font-bold text-[#6D4C4E] leading-tight">
               Be the first to discover our latest treasures
             </h2>
-            <p className="font-script text-[#C17F78] text-[20px] lg:text-[24px] leading-none mt-1">
+            <p className="font-script text-[#C17F78] text-[20px] lg:text-[24px] font-semibold leading-none mt-1">
               Timeless pieces. Exclusive offers. Just for you.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-4 lg:w-[45%] shrink-0">
-            <div className="relative flex-grow w-full border-b border-[#6D4C4E]/25 focus-within:border-[#C17F78] transition-colors py-2">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-3 lg:w-[45%] shrink-0">
+            <div className="relative flex-grow w-full">
               <input
                 type="email"
                 placeholder="Email address"
                 required
-                className="w-full bg-transparent text-xs text-[#6D4C4E] placeholder-[#6D4C4E]/40 focus:outline-none font-raleway font-light select-text"
+                className="w-full bg-white/80 border border-[#6D4C4E]/25 focus:border-[#C17F78] focus:bg-white px-4 py-2.5 rounded text-xs text-[#6D4C4E] placeholder-[#6D4C4E]/50 focus:outline-none font-raleway font-medium transition-all select-text shadow-2xs"
               />
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto bg-[#C17F78]/90 hover:bg-[#6D4C4E] text-[#6D4C4E] hover:text-white font-raleway font-bold text-xs tracking-widest py-3 px-8 border border-[#6D4C4E]/10 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 uppercase shrink-0 cursor-pointer shadow-xs"
+              className="w-full sm:w-auto bg-[#C17F78] hover:bg-[#6D4C4E] text-white font-raleway font-extrabold text-xs tracking-widest py-3 px-8 rounded-sm transition-all duration-300 flex items-center justify-center gap-2 uppercase shrink-0 cursor-pointer shadow-xs"
             >
               <span>SUBSCRIBE</span>
               <span className="text-sm font-light leading-none">+</span>
@@ -82,19 +82,19 @@ export function Footer() {
         </div>
 
         {/* Divider with Diamond Star */}
-        <div className="relative flex items-center justify-center my-6">
-          <div className="w-full h-[0.5px] bg-[#6D4C4E]/10" />
+        <div className="relative flex items-center justify-center my-4">
+          <div className="w-full h-[0.5px] bg-[#6D4C4E]/15" />
           <div className="absolute w-7 h-7 rounded-full border border-[#C17F78]/30 bg-[#FFF6F7] flex items-center justify-center text-[#C17F78] shadow-xs">
             <span className="text-[10px] leading-none">✦</span>
           </div>
         </div>
 
         {/* Section 2: Main Links & Logo Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-start text-xs font-light text-[#6D4C4E]/80 pt-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-start text-[13px] font-medium text-[#6D4C4E] pt-4">
           {/* Column 1: Shop */}
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3">
             <h4 className="font-raleway font-bold text-[#6D4C4E] uppercase tracking-widest text-[11px]">SHOP</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 text-[#6D4C4E]/90">
               <li><Link href="/products?category=Rings" className="hover:text-[#C17F78] transition-colors">Rings</Link></li>
               <li><Link href="/products?category=Bracelets" className="hover:text-[#C17F78] transition-colors">Bracelets</Link></li>
               <li><Link href="/products?category=Necklaces%2FPendants" className="hover:text-[#C17F78] transition-colors">Necklaces</Link></li>
@@ -105,9 +105,9 @@ export function Footer() {
           </div>
 
           {/* Column 2: Company */}
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3">
             <h4 className="font-raleway font-bold text-[#6D4C4E] uppercase tracking-widest text-[11px]">COMPANY</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 text-[#6D4C4E]/90">
               <li><Link href="/about" className="hover:text-[#C17F78] transition-colors">About Us</Link></li>
               <li><Link href="/about" className="hover:text-[#C17F78] transition-colors">Our Story</Link></li>
               <li><Link href="/about" className="hover:text-[#C17F78] transition-colors">Craftsmanship</Link></li>
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Logo (Centers on large screen, full-width on mobile/md) */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-center justify-center text-center order-first lg:order-none py-6 lg:py-0">
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-center justify-center text-center order-first lg:order-none py-4 lg:py-0">
             <span className="text-[#C17F78] text-xs mb-1">✦</span>
             
             <Link href="/" className="relative w-[220px] h-[75px] cursor-pointer group block">
@@ -136,10 +136,10 @@ export function Footer() {
               />
             </Link>
 
-            <p className="font-script text-[#C17F78] text-[20px] lg:text-[22px] leading-tight mt-1">
+            <p className="font-script text-[#C17F78] text-[20px] lg:text-[22px] font-semibold leading-tight mt-1">
               Handpicked pieces,<br />just for you.
             </p>
-            <div className="flex items-center justify-center gap-3 w-full mt-4">
+            <div className="flex items-center justify-center gap-3 w-full mt-3">
               <div className="w-8 h-[0.5px] bg-[#C17F78]/30" />
               <span className="text-[10px] text-[#C17F78]">♥</span>
               <div className="w-8 h-[0.5px] bg-[#C17F78]/30" />
@@ -147,9 +147,9 @@ export function Footer() {
           </div>
 
           {/* Column 4: Customer Care */}
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3">
             <h4 className="font-raleway font-bold text-[#6D4C4E] uppercase tracking-widest text-[11px]">CUSTOMER CARE</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 text-[#6D4C4E]/90">
               <li><Link href="/shipping-policy" className="hover:text-[#C17F78] transition-colors">Shipping Information</Link></li>
               <li><Link href="/refund-policy" className="hover:text-[#C17F78] transition-colors">Returns & Exchanges</Link></li>
               <li><Link href="#" className="hover:text-[#C17F78] transition-colors">Care Guide</Link></li>
@@ -159,9 +159,9 @@ export function Footer() {
           </div>
 
           {/* Column 5: Help */}
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3">
             <h4 className="font-raleway font-bold text-[#6D4C4E] uppercase tracking-widest text-[11px]">HELP</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 text-[#6D4C4E]/90">
               <li><Link href="/privacy-policy" className="hover:text-[#C17F78] transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms-of-service" className="hover:text-[#C17F78] transition-colors">Terms of Service</Link></li>
               <li><Link href="/refund-policy" className="hover:text-[#C17F78] transition-colors">Refund Policy</Link></li>
@@ -172,9 +172,9 @@ export function Footer() {
         </div>
 
         {/* Section 3: Commitments / Badges */}
-        <div className="border-t border-[#6D4C4E]/10 pt-8 mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 items-center text-center">
+        <div className="border-t border-[#6D4C4E]/10 pt-6 mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-center">
           {/* Badge 1 */}
-          <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col items-center space-y-1.5">
             <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <polygon points="6 3 18 3 22 9 12 21 2 9 6 3" />
@@ -183,11 +183,11 @@ export function Footer() {
               </svg>
             </div>
             <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">925 Sterling Silver</h5>
-            <p className="text-[9px] text-[#C17F78] tracking-wider font-light">Authentic & Certified</p>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Authentic & Certified</p>
           </div>
 
           {/* Badge 2 */}
-          <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col items-center space-y-1.5">
             <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="12 2 22 8.5 12 15 2 8.5 12 2" />
@@ -195,22 +195,22 @@ export function Footer() {
               </svg>
             </div>
             <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Handcrafted</h5>
-            <p className="text-[9px] text-[#C17F78] tracking-wider font-light">With Love & Precision</p>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">With Love & Precision</p>
           </div>
 
           {/* Badge 3 */}
-          <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col items-center space-y-1.5">
             <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
             </div>
             <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Lifetime Plating</h5>
-            <p className="text-[9px] text-[#C17F78] tracking-wider font-light">Long-Lasting Shine</p>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Long-Lasting Shine</p>
           </div>
 
           {/* Badge 4 */}
-          <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col items-center space-y-1.5">
             <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <rect x="3" y="9" width="18" height="12" rx="2" ry="2" />
@@ -218,12 +218,12 @@ export function Footer() {
               </svg>
             </div>
             <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Beautiful Packaging</h5>
-            <p className="text-[9px] text-[#C17F78] tracking-wider font-light">Perfect for Gifting</p>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Perfect for Gifting</p>
           </div>
         </div>
 
         {/* Section 4: Social Icons & Copyright */}
-        <div className="border-t border-[#6D4C4E]/10 pt-8 mt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-[#6D4C4E]/60 font-light">
+        <div className="border-t border-[#6D4C4E]/10 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-[#6D4C4E]/70 font-medium">
           {/* Social Row */}
           <div className="flex items-center space-x-3.5">
             <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/15 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-[#C17F78] bg-white/20 transition-all" aria-label="Instagram">
