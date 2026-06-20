@@ -1,355 +1,335 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import {
-  ArrowLeft,
-  ArrowRight,
-  Plus,
-  ShoppingBag,
-  Sliders,
-  Eye,
-  Copy,
-  Check
-} from 'lucide-react';
+import Link from 'next/link';
+import { Star, ShoppingBag, ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
 
-interface InteractiveProduct {
+interface Product {
   id: number;
   name: string;
+  category: string;
   price: string;
   image: string;
-  x: number;       // left percentage (0 - 100) inside 1320px container
-  y: number;       // top percentage (0 - 100) inside 1320px container
-  popDelay: string;
-  isHero?: boolean;
-  labelPosition: 'right' | 'bottom-right' | 'left' | 'top-left';
-  podiumColor: 'white' | 'pink' | 'gold' | 'mint' | 'dark';
+  rating: number;
+  reviews: number;
+  description: string;
 }
 
-export function Bestsellers() {
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [activeDragIndex, setActiveDragIndex] = useState<number | null>(null);
-  
-  const canvasRef = useRef<HTMLDivElement>(null);
+const products: Product[] = [
+  {
+    id: 1,
+    name: "Dainty Flower Ring",
+    category: "Signature Rings",
+    price: "Rs. 2,250.00",
+    image: "/home-page/our-collections/rings.png",
+    rating: 5.0,
+    reviews: 184,
+    description: "18k gold plated floral design featuring a brilliant-cut cubic zirconia center. Crafted with pure 92.5 sterling silver base."
+  },
+  {
+    id: 2,
+    name: "Evil Eye Enamel Ring",
+    category: "Enamel Rings",
+    price: "Rs. 1,850.00",
+    image: "/home-page/our-collections/evil-eye.png",
+    rating: 4.8,
+    reviews: 92,
+    description: "Hand-painted navy enamel with a protective eye motif and a CZ sparkle, representing ancient protective symbolism."
+  },
+  {
+    id: 3,
+    name: "Twisted Gold Ring",
+    category: "Gold Bands",
+    price: "Rs. 2,250.00",
+    image: "/home-page/our-collections/necklace.png",
+    rating: 4.9,
+    reviews: 115,
+    description: "Minimalist twisted gold band featuring a brilliant-cut stone set in high-polish sterling silver."
+  },
+  {
+    id: 4,
+    name: "Minimal Solitaire",
+    category: "Solitaire Rings",
+    price: "Rs. 3,350.00",
+    image: "/home-page/our-collections/bracelets.png",
+    rating: 4.9,
+    reviews: 78,
+    description: "A classic eternity band dotted with subtle sparkle, crafted with premium grade sterling silver."
+  },
+  {
+    id: 5,
+    name: "Dainty Pearl Ring",
+    category: "Pearl Rings",
+    price: "Rs. 1,650.00",
+    image: "/home-page/our-collections/earrings.png",
+    rating: 4.7,
+    reviews: 63,
+    description: "Open cuff ring design featuring twin freshwater pearls with high-lustre finish."
+  }
+];
 
-  // Position percentage values relative to the 1320px container
-  const [products, setProducts] = useState<InteractiveProduct[]>([
-    {
-      id: 1,
-      name: "Pastel Multi-Stone Ring",
-      price: "Rs. 1,400.00",
-      image: "/best sellers/1.jpg",
-      x: 12.5, y: 65.0,
-      popDelay: "0.8s",
-      labelPosition: "bottom-right",
-      podiumColor: "pink"
-    },
-    {
-      id: 2,
-      name: "Floral Vine Ring",
-      price: "Rs. 1,499.00",
-      image: "/best sellers/2.jpg",
-      x: 20.0, y: 32.0,
-      popDelay: "1.8s",
-      labelPosition: "right",
-      podiumColor: "white"
-    },
-    {
-      id: 3,
-      name: "Playful Heart-Skull\nMotif Ring",
-      price: "Rs. 2,200.00",
-      image: "/best sellers/3.jpg",
-      x: 50.5, y: 56.0,
-      isHero: true,
-      popDelay: "3.2s",
-      labelPosition: "right",
-      podiumColor: "pink"
-    },
-    {
-      id: 4,
-      name: "Gold-Finished Ring",
-      price: "Rs. 3,100.00",
-      image: "/best sellers/4.png",
-      x: 70.0, y: 32.0,
-      popDelay: "4.5s",
-      labelPosition: "right",
-      podiumColor: "pink"
-    },
-    {
-      id: 5,
-      name: "Enamel Silver Ring",
-      price: "Rs. 1,300.00",
-      image: "/best sellers/5.png",
-      x: 88.0, y: 51.0,
-      popDelay: "5.5s",
-      labelPosition: "right",
-      podiumColor: "white"
-    },
-    {
-      id: 6,
-      name: "Minimalist Solitaire Ring",
-      price: "Rs. 2,950.00",
-      image: "/best sellers/6.png",
-      x: 84.5, y: 78.0,
-      popDelay: "6.5s",
-      labelPosition: "right",
-      podiumColor: "pink"
-    }
-  ]);
+interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
 
-  const handleCanvasMouseDown = (e: React.MouseEvent, index: number) => {
-    if (!isEditMode) return;
-    e.stopPropagation();
-    setActiveDragIndex(index);
-  };
+function SpotlightCard({ children, className = '', ...props }: SpotlightCardProps) {
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
 
-  const handleCanvasMouseMove = (e: React.MouseEvent) => {
-    if (!canvasRef.current || !isEditMode || activeDragIndex === null) return;
-
-    const rect = canvasRef.current.getBoundingClientRect();
-    const pctX = parseFloat((((e.clientX - rect.left) / rect.width) * 100).toFixed(2));
-    const pctY = parseFloat((((e.clientY - rect.top) / rect.height) * 100).toFixed(2));
-
-    setProducts((prev) =>
-      prev.map((item, idx) => {
-        if (idx !== activeDragIndex) return item;
-        return {
-          ...item,
-          x: Math.max(0, Math.min(100, pctX)),
-          y: Math.max(0, Math.min(100, pctY)),
-        };
-      })
-    );
-  };
-
-  const stopDragging = () => {
-    setActiveDragIndex(null);
-  };
-
-  const handleCopyConfig = () => {
-    const codeOutput = `// Paste this coordinates config into Bestsellers.tsx!\n${JSON.stringify(products, null, 2)}`;
-    navigator.clipboard.writeText(codeOutput);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
   };
 
   return (
-    <section className="relative w-full h-[820px] select-none font-sans overflow-hidden bg-white">
-      
-      {/* BACKGROUND IMAGE Layer 1: Full-width outer background */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <Image
-          src="/home-page/best-sellers/bestsellers-bg.png"
-          alt="Bestsellers Background"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
-
-      {/* LUXURY POP ANIMATION ENGINES */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes luxuryPop {
-          0% { opacity: 0; transform: scale(0.6) translateY(20px); }
-          70% { transform: scale(1.05) translateY(-4px); }
-          100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .staggered-pop {
-          opacity: ${isEditMode ? '1' : '0'};
-          ${!isEditMode ? `animation: luxuryPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;` : ''}
-        }
-      `}} />
-
-      {/* DRAG-AND-DROP COORDINATES SNIPPET TOOLBAR */}
-      <div className="absolute top-4 left-6 z-30 flex items-center gap-3">
-        <button
-          onClick={() => setIsEditMode(!isEditMode)}
-          className={`flex items-center gap-2 text-xs font-bold tracking-wider uppercase px-4 py-2.5 rounded-full border transition-all shadow-md ${
-            isEditMode 
-              ? 'bg-amber-600 border-amber-600 text-white hover:bg-amber-500' 
-              : 'bg-white border-[#EFE5E3] text-[#4A2E2B] hover:bg-neutral-50'
-          }`}
-        >
-          <Sliders size={14} />
-          {isEditMode ? "Lock Coordinates" : "Drag Coordinates"}
-        </button>
-
-        {isEditMode && (
-          <button
-            onClick={handleCopyConfig}
-            className="flex items-center gap-2 text-xs font-bold tracking-wider bg-emerald-700 hover:bg-emerald-600 text-white px-4 py-2.5 rounded-full shadow-md transition-colors"
-          >
-            {copied ? <Check size={14} /> : <Copy size={14} />}
-            {copied ? "Copied!" : "Copy Array"}
-          </button>
-        )}
-      </div>
-
-      {/* HEADER SECTION (Centered within site width 1320px) */}
-      <div className="w-full max-w-[1320px] mx-auto px-4 flex justify-between items-center z-20 relative pt-12">
-        <div className="flex flex-col">
-          <span className="text-xs font-bold tracking-[0.25em] uppercase text-[#4A2E2B]">
-            Premium Spotlight
-          </span>
-        </div>
-
-        <div className="text-center flex flex-col items-center">
-          <h2 className="text-[#4A2E2B] text-4xl lg:text-5xl tracking-wide uppercase mb-2 font-serif" style={{ fontFamily: 'Cinzel, Georgia, serif' }}>
-            Our Bestsellers
-          </h2>
-          <div className="flex items-center gap-3 text-base lg:text-lg italic tracking-wide font-serif text-[#C89694]">
-            <span>Handpicked pieces, just for you.</span>
-            <span className="w-1.5 h-1.5 rotate-45 border border-[#C89694] block bg-[#C89694]"></span>
-          </div>
-        </div>
-
-        <button className="text-xs font-bold tracking-widest uppercase flex items-center gap-2 group text-[#4A2E2B] hover:text-black">
-          View All Collection
-          <div className="w-8 h-8 rounded-full border border-[#4A2E2B] flex items-center justify-center transition-all duration-300 group-hover:bg-[#4A2E2B] group-hover:text-white">
-            <ArrowRight size={14} />
-          </div>
-        </button>
-      </div>
-
-      {/* Layer 2: Transparent Inner container locked to 1320px width */}
+    <div
+      onMouseMove={handleMouseMove}
+      className={`relative overflow-hidden group ${className}`}
+      {...props}
+    >
+      {/* Spotlight overlay following cursor */}
       <div
-        ref={canvasRef}
-        onMouseMove={handleCanvasMouseMove}
-        onMouseUp={stopDragging}
-        onMouseLeave={stopDragging}
-        className={`w-full max-w-[1320px] h-[640px] mx-auto relative z-10 transition-all ${
-          isEditMode ? 'border border-dashed border-amber-500/50 bg-neutral-900/5' : ''
-        }`}
-      >
-        {/* Transparent dotted path map background */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          <Image
-            src="/home-page/best-sellers/nodes.png"
-            alt="Dotted Line Path"
-            fill
-            priority
-            className="object-contain"
-          />
-        </div>
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"
+        style={{
+          background: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(193, 127, 120, 0.12), transparent 80%)`,
+        }}
+      />
+      {children}
+    </div>
+  );
+}
 
-        {/* INTERACTIVE PRODUCT EMBEDDED PODIUMS & CARDS */}
-        {products.map((product, idx) => (
-          <div
-            key={product.id}
-            className="absolute staggered-pop"
-            style={{
-              left: `${product.x}%`,
-              top: `${product.y}%`,
-              animationDelay: product.popDelay,
-              transform: 'translate(-50%, -50%)',
-              zIndex: product.isHero ? 20 : 10,
-              pointerEvents: 'auto'
-            }}
-          >
-            {product.isHero ? (
-              /* HERO SPOTLIGHT RING */
-              <div 
-                className="relative flex items-center justify-center"
-                onMouseDown={(e) => handleCanvasMouseDown(e, idx)}
-              >
-                <div className="absolute w-[360px] h-[360px] bg-white/20 rounded-full pointer-events-none -z-10 blur-lg" />
-                <div className="absolute w-[290px] h-[290px] border border-white/30 rounded-full pointer-events-none -z-10" />
+export function Bestsellers() {
+  const [activeIdx, setActiveIdx] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(55);
 
-                {/* Main Podium */}
-                <div className="relative w-[220px] h-[220px] rounded-full shadow-[0_25px_50px_rgba(0,0,0,0.15)] p-2 group cursor-pointer transition-all duration-500 hover:scale-105 bg-gradient-to-b from-[#FADCDA] to-[#E3B3B1]">
-                  <div className="w-full h-full rounded-full bg-gradient-to-b from-white/40 to-transparent absolute inset-0 border border-white/60" />
-                  <div className="relative w-full h-full rounded-full overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-6 drop-shadow-[0_20px_35px_rgba(0,0,0,0.2)]"
-                    />
-                  </div>
-                </div>
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setOffset(30);
+      } else if (window.innerWidth < 768) {
+        setOffset(42);
+      } else {
+        setOffset(55);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-                {/* Card Info Box */}
-                <div className="absolute left-[88%] bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.08)] border border-white/70 min-w-[210px] flex flex-col items-start z-20">
-                  <span className="text-[10px] font-bold tracking-widest text-[#4A2E2B] bg-[#FBEBEA] px-2.5 py-1 rounded mb-3 uppercase flex items-center gap-1">
-                    ★ Hero Spotlight
-                  </span>
-                  <h3 className="text-[#3A2A28] text-sm font-medium leading-snug mb-2 whitespace-pre-line">
-                    {product.name}
-                  </h3>
-                  <span className="text-[#4A2E2B] text-base font-bold mb-4">
-                    {product.price}
-                  </span>
-                  <button className="w-10 h-10 bg-[#BC8A88] hover:bg-[#4A2E2B] text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hover:shadow-md">
-                    <ShoppingBag size={16} />
-                  </button>
-                </div>
+  const handleNext = () => {
+    setActiveIdx((prev) => (prev + 1) % products.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIdx((prev) => (prev - 1 + products.length) % products.length);
+  };
+
+  return (
+    <section className="w-full bg-[#FFF6F7] py-12 md:py-20 select-none overflow-hidden">
+      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8">
+        
+        {/* Main Columns */}
+        <div className="w-full flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          
+          {/* LEFT COLUMN: Typography & Description (45% width) */}
+          <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start text-center lg:text-left z-30">
+            <span className="text-[#C17F78] text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-2 flex items-center gap-1.5 justify-center lg:justify-start">
+              <span className="text-xs text-[#E0B4B8]">✦</span> Curated Bestsellers
+            </span>
+            
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bodoni text-[#6D4C4E] uppercase font-bold tracking-wider leading-[1.1] mt-1">
+              The Orisil<br/>Signature
+            </h2>
+
+            <div className="w-16 h-[1.5px] bg-[#E0B4B8] my-6 relative">
+              <div className="absolute inset-0 flex items-center justify-center lg:justify-start">
+                <span className="bg-[#FFF6F7] px-1 text-[8px] text-[#C17F78] absolute -top-1">✦</span>
               </div>
-            ) : (
-              /* SATELLITE RINGS */
-              <div 
-                className="relative flex items-center group cursor-pointer"
-                onMouseDown={(e) => handleCanvasMouseDown(e, idx)}
-              >
-                {/* Standard Center Node Dot */}
-                <div className="absolute w-2.5 h-2.5 rounded-full shadow-[0_0_8px_rgba(255,255,255,1)] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white" />
+            </div>
 
-                {/* Standard Base Podium */}
-                <div className={`
-                  relative w-[110px] h-[110px] rounded-full shadow-[0_12px_28px_rgba(0,0,0,0.1)] p-1.5 transition-transform duration-500 group-hover:-translate-y-2.5 z-10 bg-white
-                `}>
-                  <div className="w-full h-full rounded-full bg-gradient-to-b from-white/50 to-transparent absolute inset-0 border border-white/30" />
-                  <div className="relative w-full h-full rounded-full">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-2.5 drop-shadow-[0_10px_15px_rgba(0,0,0,0.12)]"
-                    />
-                  </div>
-                </div>
+            <p className="text-xs md:text-sm text-[#a37c76] leading-relaxed max-w-[340px] mb-8 font-sans">
+              Experience the pinnacle of fine jewelry. Each piece in our curated bestseller collection represents pure 92.5 sterling silver craftsmanship finished with timeless luxury.
+            </p>
 
-                {/* Floating Side Text Label */}
-                <div className={`
-                  absolute whitespace-nowrap flex flex-col gap-1 z-30 transition-all duration-300
-                  ${product.labelPosition === 'bottom-right' ? 'left-[80%] top-[80%]' : ''}
-                  ${product.labelPosition === 'right' ? 'left-[112%] top-1/2 -translate-y-1/2' : ''}
-                  ${product.labelPosition === 'left' ? 'right-[112%] top-1/2 -translate-y-1/2 text-right items-end' : ''}
-                  ${product.labelPosition === 'top-left' ? 'right-[80%] bottom-[80%] text-right items-end' : ''}
-                `}>
-                  <h3 className="font-medium text-xs tracking-wide text-[#5A4543]">
-                    {product.name}
-                  </h3>
-                  <span className="font-bold text-sm text-[#1A1A1A]">
-                    {product.price}
-                  </span>
-                  <button className="w-6 h-6 rounded-full border border-[#D9BCBA] text-[#A67C7A] flex items-center justify-center bg-white/40 mt-1 transition-all duration-300 hover:bg-[#4A2E2B] hover:text-white hover:border-[#4A2E2B]">
-                    <Plus size={12} strokeWidth={2.5} />
-                  </button>
-                </div>
+            {/* Carousel Control Buttons & Indicators */}
+            <div className="flex items-center gap-6">
+              {/* Arrow Controls */}
+              <div className="flex gap-2">
+                <button
+                  onClick={handlePrev}
+                  className="w-10 h-10 rounded-full border border-[#E0B4B8]/30 hover:border-[#C17F78] hover:bg-[#FFF6F7] text-[#6D4C4E] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-xs active:scale-95 animate-fade-in"
+                  aria-label="Previous card"
+                >
+                  <ArrowLeft size={16} />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="w-10 h-10 rounded-full border border-[#E0B4B8]/30 hover:border-[#C17F78] hover:bg-[#FFF6F7] text-[#6D4C4E] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-xs active:scale-95 animate-fade-in"
+                  aria-label="Next card"
+                >
+                  <ArrowRight size={16} />
+                </button>
               </div>
-            )}
+
+              {/* Dots Indicators */}
+              <div className="flex gap-1.5">
+                {products.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveIdx(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                      activeIdx === idx ? 'w-6 bg-[#C17F78]' : 'w-1.5 bg-[#E0B4B8]/50'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="mt-10 pt-6 border-t border-[#E0B4B8]/20 flex items-center gap-6 text-[10px] text-[#a37c76] font-medium tracking-wide uppercase">
+              <span className="flex items-center gap-1">✦ BIS Hallmarked</span>
+              <span className="flex items-center gap-1">✦ Free Insured Shipping</span>
+            </div>
           </div>
-        ))}
 
-        {/* TIMELINE / DOTS */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
-          <div className="w-2.5 h-2.5 rounded-full shadow-sm bg-[#4A2E2B]"></div>
-          <div className="w-2 h-2 rounded-full bg-[#EAD4D2]"></div>
-          <div className="w-2 h-2 rounded-full bg-[#EAD4D2]"></div>
-          <div className="w-2 h-2 rounded-full bg-[#EAD4D2]"></div>
-          <div className="w-2 h-2 rounded-full bg-[#EAD4D2]"></div>
-        </div>
+          {/* RIGHT COLUMN: 3D Fanned Stack Viewport (55% width) */}
+          <div className="w-full lg:w-[55%] flex items-center justify-center relative min-h-[420px] md:min-h-[480px]">
+            {products.map((product, idx) => {
+              const diff = (idx - activeIdx + products.length) % products.length;
+              const isFront = diff === 0;
+              const isRight = diff === 1;
+              const isLeft = diff === products.length - 1; // index 4
 
-        {/* BOTTOM NAVIGATION ARROWS */}
-        <div className="absolute bottom-6 left-12 flex items-center gap-4 z-20">
-          <button className="w-11 h-11 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.04)] border flex items-center justify-center transition-all duration-300 bg-white text-[#4A2E2B] border-[#EFE5E3] hover:bg-[#4A2E2B] hover:text-white">
-            <ArrowLeft size={16} />
-          </button>
-          <button className="w-11 h-11 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.04)] border flex items-center justify-center transition-all duration-300 bg-white text-[#4A2E2B] border-[#EFE5E3] hover:bg-[#4A2E2B] hover:text-white">
-            <ArrowRight size={16} />
-          </button>
+              // Calculate fanning transformations
+              let transformStyle = '';
+              let opacity = 0;
+              let zIndex = 0;
+
+              if (isFront) {
+                transformStyle = 'translate3d(0, 0, 0) scale(1) rotate(0deg)';
+                opacity = 1;
+                zIndex = 30;
+              } else if (isRight) {
+                transformStyle = `translate3d(${offset}px, 15px, 0) scale(0.92) rotate(6deg)`;
+                opacity = 0.85;
+                zIndex = 20;
+              } else if (isLeft) {
+                transformStyle = `translate3d(-${offset}px, 15px, 0) scale(0.92) rotate(-6deg)`;
+                opacity = 0.85;
+                zIndex = 20;
+              } else {
+                // Hidden cards (diff === 2 or diff === 3)
+                transformStyle = 'translate3d(0, 40px, 0) scale(0.8) rotate(0deg)';
+                opacity = 0;
+                zIndex = 10;
+              }
+
+              const handleCardClick = () => {
+                if (isRight) {
+                  handleNext();
+                } else if (isLeft) {
+                  handlePrev();
+                }
+              };
+
+              return (
+                <div
+                  key={product.id}
+                  onClick={handleCardClick}
+                  style={{
+                    transform: transformStyle,
+                    opacity: opacity,
+                    zIndex: zIndex,
+                    pointerEvents: (isFront || isRight || isLeft) ? 'auto' : 'none',
+                    transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                  className={`absolute w-[245px] sm:w-[310px] md:w-[325px] h-[340px] sm:h-[390px] md:h-[420px] bg-white rounded-2xl border border-[#E0B4B8]/30 shadow-[0_15px_35px_-8px_rgba(109,76,78,0.12)] overflow-hidden flex flex-col justify-between ${
+                    isFront 
+                      ? 'cursor-default' 
+                      : (isRight || isLeft) 
+                        ? 'cursor-pointer hover:border-[#C17F78]/50 hover:shadow-[0_20px_40px_-5px_rgba(109,76,78,0.18)]' 
+                        : ''
+                  }`}
+                >
+                  {/* Spotlight zoom wrapper */}
+                  <SpotlightCard className="w-full h-full flex flex-col justify-between bg-white">
+                    {/* Card Image */}
+                    <div className="relative w-full h-[60%] bg-[#FFE9EC] overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+                        sizes="(max-width: 768px) 60vw, 30vw"
+                        priority={isFront}
+                      />
+                      
+                      {isFront && (
+                        <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-0.5 rounded-full flex items-center gap-1 border border-[#E0B4B8]/20 shadow-xs z-30">
+                          <Sparkles size={9} className="text-[#C17F78] animate-pulse" />
+                          <span className="text-[8px] md:text-[9px] font-bold text-[#6D4C4E] tracking-wider uppercase">Best Seller</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Card Content Details */}
+                    <div className="h-[40%] p-5 md:p-6 flex flex-col justify-between bg-white select-none">
+                      <div>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[8px] md:text-[9px] tracking-wider uppercase text-[#C17F78] font-bold">
+                            {product.category}
+                          </span>
+                          {isFront && (
+                            <div className="flex items-center gap-1 text-[10px] font-medium text-[#a37c76]">
+                              <Star size={10} fill="currentColor" className="text-amber-400" />
+                              <span className="font-semibold">{product.rating}</span>
+                            </div>
+                          )}
+                        </div>
+                        <h3 className="text-xs md:text-sm font-serif text-[#6D4C4E] font-bold leading-snug line-clamp-1 mt-1 group-hover:text-[#C17F78] transition-colors duration-300">
+                          {product.name}
+                        </h3>
+                        {isFront && (
+                          <p className="text-[10px] md:text-[11px] text-[#a37c76]/80 leading-relaxed font-sans line-clamp-2 mt-2">
+                            {product.description}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Card Footer */}
+                      <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#E0B4B8]/20">
+                        <span className="text-xs md:text-sm font-bold text-[#6D4C4E] font-sans">
+                          {product.price}
+                        </span>
+
+                        {isFront ? (
+                          <Link 
+                            href={`/products?id=${product.id}`}
+                            className="bg-[#6D4C4E] hover:bg-[#C17F78] text-white text-[9px] tracking-widest font-bold uppercase py-2 px-3.5 rounded-lg flex items-center gap-1.5 transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer hover:scale-103 z-30"
+                          >
+                            <ShoppingBag size={11} strokeWidth={2} />
+                            <span>Shop Now</span>
+                          </Link>
+                        ) : (
+                          <span className="text-[9px] tracking-wider uppercase text-[#C17F78] font-bold">
+                            Click to View
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </SpotlightCard>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>
