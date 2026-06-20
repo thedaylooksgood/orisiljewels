@@ -2052,7 +2052,7 @@ export function ProductsContent() {
     <div className="w-full bg-white min-h-screen text-slate-800 font-sans 4">
       {/* Toast Notification */}
       {addedToCartToast && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-[#2a1733] text-white text-xs md:text-sm font-semibold tracking-wider px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-3 animate-fade-in border border-white/10">
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-[#6D4C4E] text-white text-xs md:text-sm font-semibold tracking-wider px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-3 animate-fade-in border border-white/10">
           <ShoppingBag size={16} className="text-yellow-400" />
           <span>Added &ldquo;{addedToCartToast}&rdquo; to your cart!</span>
         </div>
@@ -2082,8 +2082,8 @@ export function ProductsContent() {
                         const slug = getSlugFromCategory(cat);
                         router.push(`/collections/${slug}`);
                       }}
-                      className={`text-left transition-colors cursor-pointer hover:text-[#2a1733] ${isActive
-                          ? 'text-[#2a1733] font-bold text-[13px]'
+                      className={`text-left transition-colors cursor-pointer hover:text-[#C17F78] ${isActive
+                          ? 'text-[#C17F78] font-bold text-[13px]'
                           : 'text-slate-600 hover:font-medium'
                         }`}
                     >
@@ -2105,7 +2105,7 @@ export function ProductsContent() {
                     type="checkbox"
                     checked={availability.inStock}
                     onChange={(e) => setAvailability(prev => ({ ...prev, inStock: e.target.checked }))}
-                    className="w-4 h-4 border border-slate-300 rounded-sm bg-white accent-[#2a1733] focus:outline-none cursor-pointer"
+                    className="w-4 h-4 border border-slate-300 rounded-sm bg-white accent-[#C17F78] focus:outline-none cursor-pointer"
                   />
                   <span>In stock</span>
                 </label>
@@ -2114,7 +2114,7 @@ export function ProductsContent() {
                     type="checkbox"
                     checked={availability.outOfStock}
                     onChange={(e) => setAvailability(prev => ({ ...prev, outOfStock: e.target.checked }))}
-                    className="w-4 h-4 border border-slate-300 rounded-sm bg-white accent-[#2a1733] focus:outline-none cursor-pointer"
+                    className="w-4 h-4 border border-slate-300 rounded-sm bg-white accent-[#C17F78] focus:outline-none cursor-pointer"
                   />
                   <span>Out of stock</span>
                 </label>
@@ -2191,7 +2191,7 @@ export function ProductsContent() {
                       />
                     </div>
                     <div className="flex flex-col justify-center min-w-0">
-                      <span className="text-[11px] font-medium text-slate-700 hover:text-[#2a1733] transition-colors line-clamp-2 leading-snug">
+                      <span className="text-[11px] font-medium text-slate-700 hover:text-[#C17F78] transition-colors line-clamp-2 leading-snug">
                         {p.name}
                       </span>
                       <span className="text-xs font-black text-slate-900 mt-1">
@@ -2205,7 +2205,7 @@ export function ProductsContent() {
 
             {/* Search Input */}
             <div className="bg-white border border-slate-100 rounded-xl p-4 shadow-xs">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-[#2a1733] mb-3">Search</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-[#6D4C4E] mb-3">Search</h3>
               <form onSubmit={handleSearchSubmit} className="relative">
                 <input
                   name="search"
@@ -2213,9 +2213,9 @@ export function ProductsContent() {
                   type="text"
                   placeholder="Find jewellery..."
                   defaultValue={searchParam}
-                  className="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg py-2 pl-3 pr-9 focus:outline-none focus:border-[#2a1733] transition-colors"
+                  className="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg py-2 pl-3 pr-9 focus:outline-none focus:border-[#C17F78] transition-colors"
                 />
-                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#2a1733] cursor-pointer">
+                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#C17F78] cursor-pointer">
                   <Search size={15} />
                 </button>
               </form>
@@ -2225,7 +2225,7 @@ export function ProductsContent() {
             {(categoryParam || filterParam || availability.inStock || availability.outOfStock || priceRange.min > 0 || priceRange.max < maxPriceLimit || searchParam || idParam) && (
               <button
                 onClick={handleClearAll}
-                className="w-full flex items-center justify-center gap-2 border border-dashed border-[#2a1733]/30 hover:border-[#2a1733] text-slate-600 hover:text-[#2a1733] font-bold text-xs tracking-wider uppercase py-3 rounded-lg transition-colors cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 border border-dashed border-[#C17F78]/30 hover:border-[#C17F78] text-slate-600 hover:text-[#C17F78] font-bold text-xs tracking-wider uppercase py-3 rounded-lg transition-colors cursor-pointer"
               >
                 <RefreshCw size={13} />
                 Clear All Filters
@@ -2257,14 +2257,14 @@ export function ProductsContent() {
                   <div className="flex items-center space-x-2.5">
                     <button
                       onClick={() => setViewMode('grid')}
-                      className={`p-1 transition-colors cursor-pointer ${viewMode === 'grid' ? 'text-[#2a1733]' : 'text-slate-400 hover:text-slate-700'}`}
+                      className={`p-1 transition-colors cursor-pointer ${viewMode === 'grid' ? 'text-[#C17F78]' : 'text-slate-400 hover:text-slate-700'}`}
                       title="Grid View"
                     >
                       <Grid3X3 size={17} strokeWidth={2.5} />
                     </button>
                     <button
                       onClick={() => setViewMode('list')}
-                      className={`p-1 transition-colors cursor-pointer ${viewMode === 'list' ? 'text-[#2a1733]' : 'text-slate-400 hover:text-slate-700'}`}
+                      className={`p-1 transition-colors cursor-pointer ${viewMode === 'list' ? 'text-[#C17F78]' : 'text-slate-400 hover:text-slate-700'}`}
                       title="List View"
                     >
                       <List size={17} strokeWidth={2.5} />
@@ -2301,7 +2301,7 @@ export function ProductsContent() {
             <div className="lg:hidden flex items-center justify-between gap-4 p-3 bg-slate-50 border border-slate-100 rounded-lg mb-6">
               <button
                 onClick={() => setMobileFilterOpen(true)}
-                className="flex items-center gap-2 bg-[#2a1733] text-white font-bold text-[10px] uppercase tracking-wider py-2 px-3.5 rounded cursor-pointer"
+                className="flex items-center gap-2 bg-[#C17F78] hover:bg-[#6D4C4E] text-white font-bold text-[10px] uppercase tracking-wider py-2 px-3.5 rounded cursor-pointer transition-colors"
               >
                 <SlidersHorizontal size={13} />
                 Filters
@@ -2324,7 +2324,7 @@ export function ProductsContent() {
                 )}
 
                 {categoryParam && (
-                  <span className="bg-slate-100 text-[#2a1733] text-[10px] font-bold px-3 py-1 rounded flex items-center gap-1.5 uppercase tracking-wide">
+                  <span className="bg-slate-100 text-[#C17F78] text-[10px] font-bold px-3 py-1 rounded flex items-center gap-1.5 uppercase tracking-wide">
                     {categoryParam}
                     <X size={12} className="cursor-pointer hover:text-red-500" onClick={() => updateUrlParams({ category: null })} />
                   </span>
@@ -2377,7 +2377,7 @@ export function ProductsContent() {
                 </p>
                 <button
                   onClick={handleClearAll}
-                  className="bg-[#2a1733] hover:bg-[#3d224b] text-white text-[11px] font-bold uppercase tracking-widest py-3 px-8 rounded transition-colors cursor-pointer"
+                  className="bg-[#C17F78] hover:bg-[#6D4C4E] text-white text-[11px] font-bold uppercase tracking-widest py-3 px-8 rounded transition-colors cursor-pointer"
                 >
                   Show All Collection
                 </button>
@@ -2414,7 +2414,7 @@ export function ProductsContent() {
                     {/* Product Details Centered */}
                     <div className="flex flex-col pt-4 text-center items-center">
                       {/* Product title */}
-                      <h3 className="text-xs md:text-[13px] font-medium text-slate-800 hover:text-[#2a1733] transition-colors leading-relaxed truncate w-full px-1">
+                      <h3 className="text-xs md:text-[13px] font-medium text-slate-800 hover:text-[#C17F78] transition-colors leading-relaxed truncate w-full px-1">
                         {product.name}
                       </h3>
 
@@ -2426,7 +2426,7 @@ export function ProductsContent() {
                       {/* Add to Cart button */}
                       <button
                         onClick={() => handleAddToCart(product.name)}
-                        className="mt-4 w-full bg-[#2a1733] hover:bg-[#3d224b] text-white text-[11px] font-black uppercase tracking-widest py-3 rounded transition-colors cursor-pointer focus:outline-none"
+                        className="mt-4 w-full bg-[#C17F78] hover:bg-[#6D4C4E] text-white text-[11px] font-black uppercase tracking-widest py-3 rounded transition-colors cursor-pointer focus:outline-none"
                       >
                         Add to Cart
                       </button>
@@ -2462,7 +2462,7 @@ export function ProductsContent() {
                     {/* Details */}
                     <div className="flex-1 min-w-0 text-center sm:text-left">
                       <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">{product.category}</span>
-                      <h3 className="text-sm font-bold text-slate-800 mt-1 hover:text-[#2a1733] transition-colors">
+                      <h3 className="text-sm font-bold text-slate-800 mt-1 hover:text-[#C17F78] transition-colors">
                         {product.name}
                       </h3>
                       <p className="text-xs text-slate-400 mt-1 font-light leading-relaxed">
@@ -2477,7 +2477,7 @@ export function ProductsContent() {
                     <div className="flex-none w-full sm:w-auto">
                       <button
                         onClick={() => handleAddToCart(product.name)}
-                        className="w-full sm:w-44 bg-[#2a1733] hover:bg-[#3d224b] text-white text-[11px] font-black uppercase tracking-widest py-3 px-6 rounded transition-colors cursor-pointer"
+                        className="w-full sm:w-44 bg-[#C17F78] hover:bg-[#6D4C4E] text-white text-[11px] font-black uppercase tracking-widest py-3 px-6 rounded transition-colors cursor-pointer"
                       >
                         Add to Cart
                       </button>
@@ -2500,7 +2500,7 @@ export function ProductsContent() {
 
           <div className="relative ml-0 mr-auto flex h-full w-full max-w-xs flex-col bg-white py-6 px-5 shadow-xl transition-transform duration-300 overflow-y-auto">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#2a1733] flex items-center gap-2">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-[#6D4C4E] flex items-center gap-2">
                 <Filter size={16} /> Filters
               </h2>
               <button
@@ -2525,7 +2525,7 @@ export function ProductsContent() {
                         router.push(`/collections/${slug}`);
                         setMobileFilterOpen(false);
                       }}
-                      className={`text-left py-1 ${isActive ? 'text-[#2a1733] font-bold' : 'text-slate-600'}`}
+                      className={`text-left py-1 ${isActive ? 'text-[#C17F78] font-bold' : 'text-slate-600'}`}
                     >
                       {cat}
                     </button>
@@ -2543,7 +2543,7 @@ export function ProductsContent() {
                     type="checkbox"
                     checked={availability.inStock}
                     onChange={(e) => setAvailability(prev => ({ ...prev, inStock: e.target.checked }))}
-                    className="w-4 h-4 border border-slate-300 rounded bg-white accent-[#2a1733] cursor-pointer"
+                    className="w-4 h-4 border border-slate-300 rounded bg-white accent-[#C17F78] cursor-pointer"
                   />
                   <span>In stock</span>
                 </label>
@@ -2552,7 +2552,7 @@ export function ProductsContent() {
                     type="checkbox"
                     checked={availability.outOfStock}
                     onChange={(e) => setAvailability(prev => ({ ...prev, outOfStock: e.target.checked }))}
-                    className="w-4 h-4 border border-slate-300 rounded bg-white accent-[#2a1733] cursor-pointer"
+                    className="w-4 h-4 border border-slate-300 rounded bg-white accent-[#C17F78] cursor-pointer"
                   />
                   <span>Out of stock</span>
                 </label>
@@ -2606,7 +2606,7 @@ export function ProductsContent() {
             {/* Mobile Actions Drawer (Clear All) */}
             <button
               onClick={() => { handleClearAll(); setMobileFilterOpen(false); }}
-              className="w-full flex items-center justify-center gap-2 border border-dashed border-[#2a1733]/30 text-slate-600 font-bold text-xs tracking-wider uppercase py-3.5 rounded-lg"
+              className="w-full flex items-center justify-center gap-2 border border-dashed border-[#C17F78]/30 text-slate-600 font-bold text-xs tracking-wider uppercase py-3.5 rounded-lg"
             >
               <RefreshCw size={13} /> Clear All Filters
             </button>

@@ -5,6 +5,7 @@ import { ShineSection } from "@/components/ShineSection";
 import { Bestsellers } from "@/components/Bestsellers";
 import { InstagramShop } from "@/components/InstagramShop";
 import Image from "next/image";
+import { ShopByBudget } from "@/components/ShopByBudget";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </div>
 
       <NewArrivalsParallax />
+      <ShopByBudget />
       <ShineSection />
       <Bestsellers />
       <InstagramShop />

@@ -10,7 +10,7 @@ export default function ProductsPage() {
   return (
     <Suspense fallback={
       <div className="w-full min-h-[60vh] flex flex-col items-center justify-center bg-white">
-        <div className="animate-spin rounded-full h-8 w-8 border-2 border-[#2a1733] border-t-transparent mb-4"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-2 border-[#C17F78] border-t-transparent mb-4"></div>
         <p className="text-xs text-slate-400 tracking-widest uppercase font-semibold">Loading Collection...</p>
       </div>
     }>
