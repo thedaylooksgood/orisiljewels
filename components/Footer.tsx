@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { FaInstagram, FaPinterestP, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-
+import { Gem, HandHeart, ShieldCheck, Gift } from 'lucide-react';
 export function Footer() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,11 +154,7 @@ export function Footer() {
         {/* Badge 1 */}
         <div className="flex flex-col items-center space-y-1.5">
           <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <polygon points="6 3 18 3 22 9 12 21 2 9 6 3" />
-              <path d="M2 9h20M12 3v18" />
-              <path d="M12 3L6 9l6 12 6-12-6-6" />
-            </svg>
+            <Gem className="w-5 h-5" strokeWidth={1.2} />
           </div>
           <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">925 Sterling Silver</h5>
           <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Authentic & Certified</p>
@@ -167,10 +163,7 @@ export function Footer() {
         {/* Badge 2 */}
         <div className="flex flex-col items-center space-y-1.5">
           <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="12 2 22 8.5 12 15 2 8.5 12 2" />
-              <path d="M12 15v7M2 8.5L12 22l10-13.5" />
-            </svg>
+            <HandHeart className="w-5 h-5" strokeWidth={1.2} />
           </div>
           <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Handcrafted</h5>
           <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">With Love & Precision</p>
@@ -179,9 +172,7 @@ export function Footer() {
         {/* Badge 3 */}
         <div className="flex flex-col items-center space-y-1.5">
           <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
+            <ShieldCheck className="w-5 h-5" strokeWidth={1.2} />
           </div>
           <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Lifetime Plating</h5>
           <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Long-Lasting Shine</p>
@@ -190,10 +181,7 @@ export function Footer() {
         {/* Badge 4 */}
         <div className="flex flex-col items-center space-y-1.5">
           <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <rect x="3" y="9" width="18" height="12" rx="2" ry="2" />
-              <path d="M12 22V9M3 9h18M7.5 9a3.5 3.5 0 0 1 0-7c2 0 4.5 3.5 4.5 3.5s2.5-3.5 4.5-3.5a3.5 3.5 0 0 1 0 7" />
-            </svg>
+            <Gift className="w-5 h-5" strokeWidth={1.2} />
           </div>
           <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Beautiful Packaging</h5>
           <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Perfect for Gifting</p>
