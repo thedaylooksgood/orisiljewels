@@ -2059,7 +2059,7 @@ export function ProductsContent() {
       )}
 
       {/* Main Listing Area */}
-      <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-8">
+      <div className="max-w-[1320px] mx-auto px-4 md:px-8 py-8">
 
         {/* Two-Column Grid Layout */}
         <div className="flex flex-col lg:flex-row gap-8 items-start">

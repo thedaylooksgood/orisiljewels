@@ -77,23 +77,21 @@ export function InstagramShop() {
 
         {/* LEFT COLUMN: Typography and Controls */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left z-40 md:w-[35%]">
-          <div className="flex items-center space-x-3 mb-4 text-[#a37c76] text-xs font-semibold tracking-widest">
-            <span className="w-8 h-[1px] bg-[#a37c76] hidden md:block"></span>
-            <span>CONCEPT 03</span>
-            <span className="w-8 h-[1px] bg-[#a37c76] md:hidden"></span>
-          </div>
-
-          <h2 className="text-[#4a3331] text-4xl md:text-5xl font-serif font-bold mb-4 leading-[1.1] tracking-wide">
-            INSTAGRAM<br />SHOP
-          </h2>
-
-          <Heart className="text-[#a37c76] w-5 h-5 mb-4 font-light" strokeWidth={1} />
-
-          <p className="text-[#a37c76] italic font-serif text-lg mb-8 max-w-[280px]">
-            Straight from our feed to your cart. Tap. Love. Shop.
+          <p className="font-script font-bold text-[#a37c76] text-[30px] lg:text-[34px] leading-none mb-1 max-w-[320px]">
+            Tap. Love. Shop.
           </p>
 
-          <Link href="/instagram-shop" className="flex items-center space-x-3 text-[#a37c76] font-medium text-xs tracking-widest cursor-pointer mb-10 group-hover:opacity-100">
+          <h2 className="text-xl md:text-[22px] lg:text-[24px] font-bodoni font-bold text-[#4a3331] uppercase leading-tight tracking-normal mb-2">
+            INSTAGRAM SHOP
+          </h2>
+
+          <p className="font-raleway text-[#a37c76] text-xs md:text-sm tracking-wider mb-6 max-w-[280px]">
+            Straight from our feed to your cart.
+          </p>
+
+          <Heart className="text-[#a37c76] w-5 h-5 mb-8 font-light" strokeWidth={1} />
+
+          <Link href="/instagram-shop" className="flex items-center space-x-3 text-[#a37c76] font-raleway font-bold text-xs tracking-widest cursor-pointer mb-10 group-hover:opacity-100 uppercase">
             <span className="border-b border-[#a37c76] pb-1">DISCOVER MORE</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -120,10 +118,10 @@ export function InstagramShop() {
                 {/* 1. Instagram Post Header */}
                 <div className="flex items-center justify-between px-3 py-2 bg-white z-10 shrink-0">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full border border-[#d4a3a3] flex items-center justify-center text-[9px] text-[#d4a3a3] font-serif font-bold bg-[#fdf6f5]">
+                    <div className="w-6 h-6 rounded-full border border-[#d4a3a3] flex items-center justify-center text-[9px] text-[#d4a3a3] font-playfair font-bold bg-[#fdf6f5]">
                       jz
                     </div>
-                    <span className="text-[11px] font-semibold text-slate-800 tracking-tight">orisiljewels</span>
+                    <span className="text-[11px] font-raleway font-semibold text-slate-800 tracking-tight">orisiljewels</span>
                   </div>
                   <MoreHorizontal size={14} className="text-slate-500" />
                 </div>
@@ -150,12 +148,12 @@ export function InstagramShop() {
 
                 {/* 4. Optional Caption (Title & Price) */}
                 {(card.title || card.price) && (
-                  <div className="px-3 pb-3 pt-1 text-[11px] text-slate-800 bg-white shrink-0 leading-snug">
+                  <div className="px-3 pb-3 pt-1 text-[11px] font-raleway text-slate-800 bg-white shrink-0 leading-snug">
                     <span className="font-bold mr-1">orisiljewels</span>
-                    {card.title && <span className="whitespace-pre-line">{card.title} </span>}
+                    {card.title && <span className="whitespace-pre-line font-playfair font-semibold text-[13px]">{card.title} </span>}
                     {card.price && (
                       <div className="mt-1 flex items-center justify-between">
-                        <span className="font-bold text-black">{card.price}</span>
+                        <span className="font-bold font-raleway text-black">{card.price}</span>
                       </div>
                     )}
                   </div>
