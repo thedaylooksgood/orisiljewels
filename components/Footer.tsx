@@ -12,7 +12,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#FFF6F7] text-[#6D4C4E] pt-6 pb-2 md:pt-8 md:pb-3 select-none relative overflow-hidden border-t border-[#C17F78]/15">
+    <footer className="mt-auto w-full bg-[#FFF6F7] text-[#6D4C4E] pt-6 pb-2 md:pt-8 md:pb-3 select-none relative overflow-hidden border-t border-[#C17F78]/15">
       {/* Luxurious Silk Background Texture Overlay */}
       <div className="absolute inset-0 w-full h-full z-0 opacity-[0.15] pointer-events-none">
         <Image
