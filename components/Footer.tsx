@@ -89,7 +89,7 @@ export function Footer() {
             </p>
 
             <p className="font-raleway text-xs text-[#6D4C4E]/80 leading-relaxed max-w-[340px]">
-              Orisil Jewels offers premium, handcrafted 92.5 sterling silver jewelry. Each piece is designed with love, combining timeless elegance with modern craftsmanship to create treasures you'll cherish forever.
+              Orisil Jewels offers premium, handcrafted 92.5 sterling silver jewelry. Each piece is designed with love, combining timeless elegance with modern craftsmanship to create treasures you&apos;ll cherish forever.
             </p>
 
             <div className="flex items-center gap-3 w-[80%] pt-0.5">
@@ -149,66 +149,66 @@ export function Footer() {
           </div>
         </div>
 
-      {/* Section 3: Commitments / Badges */}
-      <div className="border-t border-[#6D4C4E]/10 pt-2 mt-2 grid grid-cols-2 md:grid-cols-4 gap-2 items-center text-center">
-        {/* Badge 1 */}
-        <div className="flex flex-col items-center space-y-1.5">
-          <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <Gem className="w-5 h-5" strokeWidth={1.2} />
+        {/* Section 3: Commitments / Badges */}
+        <div className="border-t border-[#6D4C4E]/10 pt-2 mt-2 grid grid-cols-2 md:grid-cols-4 gap-2 items-center text-center">
+          {/* Badge 1 */}
+          <div className="flex flex-col items-center space-y-1.5">
+            <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
+              <Gem className="w-5 h-5" strokeWidth={1.2} />
+            </div>
+            <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">925 Sterling Silver</h5>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Authentic & Certified</p>
           </div>
-          <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">925 Sterling Silver</h5>
-          <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Authentic & Certified</p>
+
+          {/* Badge 2 */}
+          <div className="flex flex-col items-center space-y-1.5">
+            <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
+              <HandHeart className="w-5 h-5" strokeWidth={1.2} />
+            </div>
+            <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Handcrafted</h5>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">With Love & Precision</p>
+          </div>
+
+          {/* Badge 3 */}
+          <div className="flex flex-col items-center space-y-1.5">
+            <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
+              <ShieldCheck className="w-5 h-5" strokeWidth={1.2} />
+            </div>
+            <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Lifetime Plating</h5>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Long-Lasting Shine</p>
+          </div>
+
+          {/* Badge 4 */}
+          <div className="flex flex-col items-center space-y-1.5">
+            <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
+              <Gift className="w-5 h-5" strokeWidth={1.2} />
+            </div>
+            <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Beautiful Packaging</h5>
+            <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Perfect for Gifting</p>
+          </div>
         </div>
 
-        {/* Badge 2 */}
-        <div className="flex flex-col items-center space-y-1.5">
-          <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <HandHeart className="w-5 h-5" strokeWidth={1.2} />
+        {/* Section 4: Social Icons & Copyright */}
+        <div className="border-t border-[#6D4C4E]/10 pt-2 mt-2 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-[#6D4C4E]/70 font-medium">
+          {/* Social Row */}
+          <div className="flex items-center space-x-3.5">
+            <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="Instagram">
+              <FaInstagram size={14} />
+            </Link>
+            <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="Pinterest">
+              <FaPinterestP size={14} />
+            </Link>
+            <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="WhatsApp">
+              <FaWhatsapp size={15} />
+            </Link>
+            <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="Email">
+              <FaEnvelope size={13} />
+            </Link>
           </div>
-          <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Handcrafted</h5>
-          <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">With Love & Precision</p>
-        </div>
 
-        {/* Badge 3 */}
-        <div className="flex flex-col items-center space-y-1.5">
-          <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <ShieldCheck className="w-5 h-5" strokeWidth={1.2} />
-          </div>
-          <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Lifetime Plating</h5>
-          <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Long-Lasting Shine</p>
-        </div>
-
-        {/* Badge 4 */}
-        <div className="flex flex-col items-center space-y-1.5">
-          <div className="w-10 h-10 rounded-full border border-[#C17F78]/30 bg-white/40 flex items-center justify-center text-[#C17F78] shadow-xs">
-            <Gift className="w-5 h-5" strokeWidth={1.2} />
-          </div>
-          <h5 className="text-[10px] font-raleway font-bold text-[#6D4C4E] tracking-widest uppercase">Beautiful Packaging</h5>
-          <p className="text-[9px] text-[#C17F78] tracking-wider font-medium">Perfect for Gifting</p>
+          <div>© 2025 ORISIL. All Rights Reserved.</div>
         </div>
       </div>
-
-      {/* Section 4: Social Icons & Copyright */}
-      <div className="border-t border-[#6D4C4E]/10 pt-2 mt-2 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-[#6D4C4E]/70 font-medium">
-        {/* Social Row */}
-        <div className="flex items-center space-x-3.5">
-          <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="Instagram">
-            <FaInstagram size={14} />
-          </Link>
-          <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="Pinterest">
-            <FaPinterestP size={14} />
-          </Link>
-          <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="WhatsApp">
-            <FaWhatsapp size={15} />
-          </Link>
-          <Link href="#" className="w-8 h-8 rounded-full border border-[#6D4C4E]/20 hover:border-[#C17F78] flex items-center justify-center text-[#6D4C4E] hover:text-white hover:bg-[#C17F78] bg-white/40 transition-all duration-300 shadow-sm" aria-label="Email">
-            <FaEnvelope size={13} />
-          </Link>
-        </div>
-
-        <div>© 2025 ORISIL. All Rights Reserved.</div>
-      </div>
-    </div>
-  </footer>
+    </footer>
   );
 }
