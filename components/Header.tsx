@@ -82,17 +82,23 @@ export function Header() {
             height: isScrolled ? "54px" : "72px",
           }}
           transition={dockTransition}
-          className={`pointer-events-auto relative flex justify-center overflow-hidden transition-shadow duration-700 w-full ${isScrolled ? "shadow-[0_12px_40px_rgba(109,76,78,0.06)]" : ""
+          className={`pointer-events-auto relative flex justify-center transition-shadow duration-700 w-full ${isScrolled ? "shadow-[0_12px_40px_rgba(109,76,78,0.06)]" : ""
             }`}
         >
           {/* Animated Backgrounds */}
           <motion.div
-            animate={{ opacity: isScrolled ? 1 : 0 }}
+            animate={{ 
+              opacity: isScrolled ? 1 : 0,
+              borderRadius: isScrolled ? "16px" : "0px"
+            }}
             transition={dockTransition}
             className="absolute inset-0 bg-white/95 backdrop-blur-xl z-0"
           />
           <motion.div
-            animate={{ opacity: isScrolled ? 0 : 1 }}
+            animate={{ 
+              opacity: isScrolled ? 0 : 1,
+              borderRadius: isScrolled ? "16px" : "0px"
+            }}
             transition={dockTransition}
             className="absolute inset-0 bg-white z-0"
           />
@@ -324,12 +330,16 @@ export function Header() {
               </Link>
 
               {/* Shopping Cart Bag */}
-              <div className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 relative">
+              <Link
+                href="/cart"
+                className="p-2 hover:text-[#C17F78] transition-all duration-300 cursor-pointer rounded-full hover:bg-bg-soft/50 hover:scale-105 active:scale-95 relative inline-block"
+                aria-label="View shopping cart"
+              >
                 <ShoppingBag size={19} strokeWidth={1.5} />
                 <span className="absolute top-1 right-1 bg-[#C17F78] text-white text-[8px] font-bold w-[14px] h-[14px] flex items-center justify-center rounded-full border border-white">
-                  1
+                  2
                 </span>
-              </div>
+              </Link>
 
               {/* Mobile Hamburger menu */}
               <button
