@@ -39,10 +39,40 @@ export function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearchOverlay, setShowSearchOverlay] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [cartCount, setCartCount] = useState<number>(0);
 
   // Mobile accordion state
   const [mobileShopOpen, setMobileShopOpen] = useState(false);
   const [mobileCollectionsOpen, setMobileCollectionsOpen] = useState(false);
+
+  useEffect(() => {
+    const updateCount = () => {
+      const saved = localStorage.getItem('orisil-cart');
+      if (saved) {
+        try {
+          const items = JSON.parse(saved);
+          const totalQty = items.reduce((sum: number, item: any) => sum + (item.quantity || 0), 0);
+          setCartCount(totalQty);
+        } catch (e) {
+          console.error(e);
+          setCartCount(0);
+        }
+      } else {
+        // Fallback default of 2 to match initial showcase items when no storage exists
+        setCartCount(2);
+      }
+    };
+
+    updateCount();
+
+    window.addEventListener('orisil-cart-change', updateCount);
+    window.addEventListener('storage', updateCount);
+
+    return () => {
+      window.removeEventListener('orisil-cart-change', updateCount);
+      window.removeEventListener('storage', updateCount);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -337,7 +367,7 @@ export function Header() {
               >
                 <ShoppingBag size={19} strokeWidth={1.5} />
                 <span className="absolute top-1 right-1 bg-[#C17F78] text-white text-[8px] font-bold w-[14px] h-[14px] flex items-center justify-center rounded-full border border-white">
-                  2
+                  {cartCount}
                 </span>
               </Link>
 

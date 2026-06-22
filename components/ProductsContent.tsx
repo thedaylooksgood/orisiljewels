@@ -139,8 +139,58 @@ export function ProductsContent() {
 
 
   // Trigger add to cart feedback
-  const handleAddToCart = (productName: string) => {
-    setAddedToCartToast(productName);
+  const handleAddToCart = (product: Product) => {
+    const saved = localStorage.getItem('orisil-cart');
+    let items = [];
+    if (saved) {
+      try {
+        items = JSON.parse(saved);
+      } catch (e) {
+        items = [];
+      }
+    } else {
+      // Default to initial showcase items
+      items = [
+        {
+          id: 1,
+          name: "925 Sterling Silver Classic Solitaire Ring",
+          price: 2499,
+          quantity: 1,
+          image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=600&auto=format&fit=crop",
+          sku: "OJ-RNG-082-07",
+          details: "Size: 7"
+        },
+        {
+          id: 2,
+          name: "Timeless Silver Infinite Love Pendant Necklace",
+          price: 3299,
+          quantity: 1,
+          image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=600&auto=format&fit=crop",
+          sku: "OJ-NKL-143-18",
+          details: "Length: 18 inches"
+        }
+      ];
+    }
+
+    const existingIndex = items.findIndex((item: any) => item.id === product.id && item.details === 'Standard');
+    if (existingIndex > -1) {
+      items[existingIndex].quantity += 1;
+    } else {
+      items.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        image: product.image,
+        sku: `OJ-PROD-${product.id}`,
+        details: 'Standard'
+      });
+    }
+
+    localStorage.setItem('orisil-cart', JSON.stringify(items));
+    window.dispatchEvent(new Event('orisil-cart-change'));
+
+    setAddedToCartToast(product.name);
     setTimeout(() => {
       setAddedToCartToast(null);
     }, 3000);
@@ -608,7 +658,7 @@ export function ProductsContent() {
 
                     {/* Add to Cart button */}
                     <button
-                      onClick={() => handleAddToCart(product.name)}
+                      onClick={() => handleAddToCart(product)}
                       className="mt-4 w-full bg-[#C17F78] hover:bg-[#6D4C4E] text-white text-[11px] font-black uppercase tracking-widest py-3 rounded transition-colors cursor-pointer focus:outline-none"
                     >
                       Add to Cart
@@ -660,7 +710,7 @@ export function ProductsContent() {
                     {/* Action */}
                     <div className="flex-none w-full sm:w-auto">
                       <button
-                        onClick={() => handleAddToCart(product.name)}
+                        onClick={() => handleAddToCart(product)}
                         className="w-full sm:w-44 bg-[#C17F78] hover:bg-[#6D4C4E] text-white text-[11px] font-black uppercase tracking-widest py-3 px-6 rounded transition-colors cursor-pointer"
                       >
                         Add to Cart

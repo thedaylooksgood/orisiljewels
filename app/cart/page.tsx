@@ -50,10 +50,46 @@ const initialCartItems: CartItem[] = [
 const FREE_SHIPPING_THRESHOLD = 5000;
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [promoCode, setPromoCode] = useState('');
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
   const [promoError, setPromoError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('orisil-cart');
+    if (saved) {
+      try {
+        setCartItems(JSON.parse(saved));
+      } catch (e) {
+        console.error(e);
+        setCartItems(initialCartItems);
+      }
+    } else {
+      setCartItems(initialCartItems);
+      localStorage.setItem('orisil-cart', JSON.stringify(initialCartItems));
+      window.dispatchEvent(new Event('orisil-cart-change'));
+    }
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem('orisil-cart', JSON.stringify(cartItems));
+      window.dispatchEvent(new Event('orisil-cart-change'));
+    }
+  }, [cartItems, isLoaded]);
+
+  if (!isLoaded) {
+    return (
+      <div className="w-full bg-[#FDFBFB] min-h-screen py-12 md:py-20 font-sans text-black flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-[#C17F78]/30 border-t-[#C17F78] rounded-full animate-spin"></div>
+          <p className="text-xs font-bold tracking-widest text-[#6D4C4E] uppercase">Loading your cart...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Derive Subtotal
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
