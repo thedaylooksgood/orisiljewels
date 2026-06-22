@@ -241,13 +241,13 @@ export function ProductsContent() {
         <div className="flex flex-col lg:flex-row gap-8 items-start">
 
           {/* Left Sidebar: Filter Panel (Desktop only) */}
-          <aside className="hidden lg:flex flex-col w-[22%] flex-none space-y-8 sticky top-20 h-[calc(100vh-6rem)] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#E0B4B8]/50 hover:[&::-webkit-scrollbar-thumb]:bg-[#C17F78] [&::-webkit-scrollbar-thumb]:rounded-full border-r border-slate-100 pr-6 pb-8">
+          <aside className="hidden lg:flex flex-col w-[22%] flex-none space-y-5 sticky top-20 h-[calc(100vh-6rem)] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#E0B4B8]/50 hover:[&::-webkit-scrollbar-thumb]:bg-[#C17F78] [&::-webkit-scrollbar-thumb]:rounded-full border-r border-slate-100 pr-6 pb-8">
 
             {/* Categories list (collapsible) */}
             <div className="bg-white py-2">
               <button 
                 onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="w-full flex items-center justify-between text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 pb-2 border-b border-slate-100 cursor-pointer"
+                className="w-full flex items-center justify-between text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-3 pb-2 border-b border-slate-100 cursor-pointer"
               >
                 <span>Categories</span>
                 <ChevronDown size={16} className={`transition-transform duration-300 ${categoriesOpen ? 'rotate-180' : ''}`} />
@@ -275,8 +275,8 @@ export function ProductsContent() {
             </div>
 
             {/* Availability checks (screenshot style) */}
-            <div className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 .5">
+            <div className="bg-white py-0">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-3 pb-2 border-b border-slate-100">
                 Availability
               </h3>
               <div className="flex flex-col space-y-3.5 text-xs font-light text-slate-600">
@@ -302,8 +302,8 @@ export function ProductsContent() {
             </div>
 
             {/* Price Dual-Range Slider (screenshot style) */}
-            <div key={`${activeCategory}-${maxPriceLimit}`} className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-2 border-b border-slate-100 .5">
+            <div key={`${activeCategory}-${maxPriceLimit}`} className="bg-white py-0">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-2 pb-2 border-b border-slate-100">
                 Price
               </h3>
 
@@ -354,8 +354,8 @@ export function ProductsContent() {
             </div>
 
             {/* Popular Products Widget (screenshot style) */}
-            <div className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 .5">
+            <div className="bg-white py-0">
+              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-3 pb-2 border-b border-slate-100">
                 Popular Products
               </h3>
               <div className="flex flex-col space-y-4">
