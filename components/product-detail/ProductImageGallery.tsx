@@ -9,9 +9,16 @@ interface Props {
 }
 
 export function ProductImageGallery({ mainImage, productName }: Props) {
-  // Since products only have 1 image, we simulate 4 thumbnails
-  // using the same image (in a real app, these would be different angles)
-  const thumbnails = [mainImage, mainImage, mainImage, mainImage];
+  const ALL_NICE_IMAGES = [
+    "/home-page/our-collections/rings.png",
+    "/home-page/our-collections/evil-eye.png",
+    "/home-page/our-collections/necklace.png",
+    "/home-page/our-collections/bracelets.png",
+    "/home-page/our-collections/earrings.png"
+  ];
+  
+  const otherImages = ALL_NICE_IMAGES.filter(img => img !== mainImage);
+  const thumbnails = [mainImage, ...otherImages].slice(0, 5);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (

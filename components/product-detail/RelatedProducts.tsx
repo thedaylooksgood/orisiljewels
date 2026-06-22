@@ -7,6 +7,14 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { Heart, ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Product } from '@/lib/products';
 
+const TEMP_IMAGES = [
+  "/home-page/our-collections/rings.png",
+  "/home-page/our-collections/evil-eye.png",
+  "/home-page/our-collections/necklace.png",
+  "/home-page/our-collections/bracelets.png",
+  "/home-page/our-collections/earrings.png"
+];
+
 interface Props {
   products: Product[];
 }
@@ -54,21 +62,21 @@ export function RelatedProducts({ products }: Props) {
       {/* Carousel */}
       <div ref={emblaRef} className="overflow-hidden">
         <div className="flex gap-6">
-          {products.map(product => (
-            <div
+          {products.map((product, index) => (
+              <div
               key={product.id}
               className="flex-none w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] 
-                lg:w-[calc(25%-18px)]"
+                md:w-[calc(25%-18px)] lg:w-[calc(20%-19.2px)] xl:w-[calc(16.666%-20px)]"
             >
               <Link href={`/products/${product.id}`} className="group block">
                 {/* Image */}
                 <div className="relative aspect-[3/4] bg-[#F3E3E4] rounded-2xl 
                   overflow-hidden mb-3">
                   <Image
-                    src={product.image}
+                    src={TEMP_IMAGES[index % TEMP_IMAGES.length]}
                     alt={product.name}
                     fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                     className="object-cover transition-transform duration-700 
                       ease-out group-hover:scale-105"
                   />
