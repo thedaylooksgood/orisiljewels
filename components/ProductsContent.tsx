@@ -82,6 +82,7 @@ export function ProductsContent() {
 
   // Component states
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   const [addedToCartToast, setAddedToCartToast] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -240,14 +241,18 @@ export function ProductsContent() {
         <div className="flex flex-col lg:flex-row gap-8 items-start">
 
           {/* Left Sidebar: Filter Panel (Desktop only) */}
-          <aside className="hidden lg:flex flex-col w-[22%] flex-none space-y-8 sticky top-20 border-r border-slate-100 pr-6">
+          <aside className="hidden lg:flex flex-col w-[22%] flex-none space-y-8 sticky top-20 h-[calc(100vh-6rem)] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#E0B4B8]/50 hover:[&::-webkit-scrollbar-thumb]:bg-[#C17F78] [&::-webkit-scrollbar-thumb]:rounded-full border-r border-slate-100 pr-6 pb-8">
 
-            {/* Categories list (screenshot style) */}
+            {/* Categories list (collapsible) */}
             <div className="bg-white py-2">
-              <h3 className="text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 border-b border-slate-100 .5">
-                Categories
-              </h3>
-              <div className="flex flex-col space-y-3.5 text-xs text-slate-600 font-light">
+              <button 
+                onClick={() => setCategoriesOpen(!categoriesOpen)}
+                className="w-full flex items-center justify-between text-[13px] font-black uppercase tracking-[0.15em] text-slate-900 mb-4 pb-2 border-b border-slate-100 cursor-pointer"
+              >
+                <span>Categories</span>
+                <ChevronDown size={16} className={`transition-transform duration-300 ${categoriesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div className={`flex flex-col text-xs text-slate-600 font-light overflow-hidden transition-all duration-300 ${categoriesOpen ? 'max-h-[500px] opacity-100 mb-4 space-y-3.5' : 'max-h-0 opacity-0'}`}>
                 {CATEGORIES.map((cat) => {
                   const isActive = activeCategory.toLowerCase() === cat.toLowerCase();
                   return (
